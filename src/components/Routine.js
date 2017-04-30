@@ -9,6 +9,16 @@ import {
 
 import { Header } from './common';
 
+/*
+TO DO
+- add a rest interval
+- don't start things automatically, add a start button
+- create a container component to reduce header redundancy
+- clean up code
+
+*/
+
+
 export default class home extends Component {
 
   state = {

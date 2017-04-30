@@ -28,9 +28,6 @@ export default class home extends Component {
       <View style={styles.container}>
         <Header headerText="Stretch Routine Timer" />
         <View style={styles.selectRoutine}>
-          <Text style={styles.selectRoutineText}>
-            Select a Routine
-          </Text>
           <Picker
             style={styles.picker}
             selectedValue={this.state.routine}
@@ -43,7 +40,7 @@ export default class home extends Component {
           <Button
             style={styles.button}
             onPress={this.onRoutineSelect.bind(this)}
-            title="Select"
+            title={"Select " + this.state.routine + ' routine'}
             color="#841584"
           />
         </View>
@@ -51,7 +48,7 @@ export default class home extends Component {
           <Button
             style={styles.button}
             onPress={()=>{}}
-            title="Create a routine"
+            title="Or create a new routine"
             color="#841584"
           />
         </View>
@@ -65,9 +62,7 @@ const styles = {
     paddingLeft: 5,
     paddingRight: 5,
     backgroundColor: '#ccc',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch'
+    flex: 1
   },
   selectRoutineText: {
     fontSize: 18
