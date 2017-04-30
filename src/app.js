@@ -11,27 +11,32 @@ import { Header } from './components/common';
 
 export default class stretchingroutinetimer extends Component {
   state = {
-
+    routine: 'java'
   }
   render() {
     return (
       <View style={styles.container}>
         <Header headerText="Stretch Routine Timer" />
         <View style={styles.selectRoutine}>
-          <Text>
+          <Text style={styles.selectRoutineText}>
             Select a Routine
           </Text>
           <Picker
             style={styles.picker}
-            selectedValue={"weee"}
-            onValueChange={(lang) => this.setState({language: lang})}>
+            selectedValue={this.state.routine}
+            onValueChange={(routine) => this.setState({routine: routine})}>
             <Picker.Item label="Java" value="java" />
             <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Python" value="js" />
+            <Picker.Item label="Python" value="py" />
           </Picker>
         </View>
         <View style={styles.createRoutine}>
-          <Button style={styles.button} title="Create a routine" onPress={()=>{}} />
+          <Button
+            style={styles.button}
+            onPress={()=>{}}
+            title="Create a routine"
+            color="#841584"
+          />
         </View>
       </View>
     );
@@ -47,19 +52,21 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'stretch'
   },
+  selectRoutineText: {
+    fontSize: 18
+  },
   selectRoutine: {
-    backgroundColor: 'orange',
     alignItems: 'center',
     justifyContent:'center',
     flex: 1
   },
   picker: {
-    backgroundColor: 'purple',
     alignSelf: 'stretch'
   },
   createRoutine: {
-    backgroundColor: 'green',
-    justifyContent: 'center',
-    flex: 1
+    flex: 1,
+  },
+  button: {
+    backgroundColor: 'red'
   }
 }
