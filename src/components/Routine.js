@@ -7,6 +7,8 @@ import {
   Button
 } from 'react-native';
 
+import config from './config';
+
 import { Header } from './common';
 
 /*
@@ -142,7 +144,7 @@ export default class home extends Component {
   }
 
   startRoutine() {
-    this.startRest(10).then((result) => {
+    this.startRest(5).then((result) => {
       this.startStretch(0);
     });
   }
