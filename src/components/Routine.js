@@ -29,7 +29,8 @@ export default class home extends Component {
     timeRemaining: 2,
     totalStretches: null,
     currentStretchNumber: null,
-    routineFinished: false
+    routineFinished: false,
+    resting: false
   };
 
   getRoutine(name) {
@@ -82,12 +83,23 @@ export default class home extends Component {
     this.startStretch(0);
   }
 
-  startStretch(index) {
-    console.log('startStretch started', index);
+  startRest(time) {
+    this.setState({
+      timeRemaining: time,
+      resting: true
+    });
+    this.interval = setInterval(() => {
+      if (time === 0) {
+        clearInterval(this.interval);
+        this.setState({ resting: false });
+      } else {
+        this.startRest(time - 1, cb);
+      }
+    }, 1000);
+  }
 
-    console.log('next stretch', index, this.state.routineList[index]);
+  startStretch(index) {
     this.setState((prevState, props) => {
-      console.log('prevState', prevState.routineList[index]);
       return {
         currentStretch: prevState.routineList[index],
         currentStretchNumber: index,
@@ -97,14 +109,11 @@ export default class home extends Component {
 
     this.interval = setInterval(() => {
       if (this.state.timeRemaining === 0) {
-        console.log('conditional', this.state.currentStretchNumber, this.state.routineList.length)
         if (this.state.currentStretchNumber < this.state.routineList.length - 1) {
           let nextIndex = this.state.currentStretchNumber + 1;
           clearInterval(this.interval);
-          console.log('nextIndex', nextIndex);
           this.startStretch(nextIndex);
         } else {
-          console.log('routine finished');
           clearInterval(this.interval);
           this.setState({ routineFinished: true });
         }
@@ -117,24 +126,8 @@ export default class home extends Component {
     }, 1000);
   }
 
-  startRoutine(index) {
-    if (this.state.running) {
-      clearInterval(this.interval);
-      this.setState({ running: false });
-      return
-    }
-
-    this.interval = setInterval(() => {
-      console.log('ran');
-      if (this.state.timeRemaining === 0) {
-        startRoutine()
-      } else {
-        this.setState({
-          timeRemaining: this.state.timeRemaining - 1,
-          running: true
-        });
-      }
-    }, 1000);
+  startRoutine() {
+    this.startStretch(0);
   }
 
   renderStretch() {
@@ -147,12 +140,29 @@ export default class home extends Component {
       );
     }
 
+    if (!this.state.running) {
+      return (
+        <View style={styles.routineContainer}>
+          <Button
+            onPress={this.startRoutine.bind(this)}
+            title="Start Routine"
+            color="#841584"
+          />
+          <Text>
+            {
+              this.state.routineList.map(stretch => stretch.name).join(', ')
+            }
+          </Text>
+        </View>
+      );
+    }
+
     return (
       <View style={styles.routineContainer}>
         <Text>
           Selected routine is: {this.props.routine}
         </Text>
-        <Text>
+        <Text style={styles.timeRemaining}>
           Time Remaining: {this.state.timeRemaining}
         </Text>
         <Text>
@@ -160,6 +170,9 @@ export default class home extends Component {
         </Text>
         <Text>
           Current Side: {this.state.currentStretch && this.state.currentStretch.side}
+        </Text>
+        <Text>
+          Resting: {this.state.resting ? 'true' : 'false'}
         </Text>
       </View>
     );
@@ -184,5 +197,8 @@ const styles = {
     backgroundColor: 'yellow',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  timeRemaining: {
+
   }
 }
