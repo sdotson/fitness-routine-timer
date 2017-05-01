@@ -27,6 +27,7 @@ export default class home extends Component {
     currentStretch: {},
     running: false,
     timeRemaining: 2,
+    restTimeRemaing: 0,
     totalStretches: null,
     currentStretchNumber: null,
     routineFinished: false,
@@ -79,40 +80,37 @@ export default class home extends Component {
       currentStretchNumber: 0,
       timeRemaining: routineList[0].duration
     });
-    this.startRest(5).then((result) => {
-      console.log('start rest result', result);
-      this.startStretch(0);
-    })
   }
 
   timerTick(time) {
-    setInterval(() => {
-      if (time === 0) {
-        clearInterval(this.interval);
-        this.setState({ resting: false });
-        resolve('success');
-      } else {
-        this.timerTick(time - 1);
-      }
-    }, 1000);
+    this.setState({
+      timeRemaining: time
+    });
   }
 
   startRest(time) {
+    this.setState({
+      timeRemaining: time,
+      resting: true
+    });
     let res = new Promise((resolve, reject) => {
-      this.setState({
-        timeRemaining: time,
-        resting: true
-      });
       this.interval = setInterval(() => {
-        if (time === 0) {
+        if (this.state.timeRemaining === 0) {
           clearInterval(this.interval);
-          this.setState({ resting: false });
+          this.setState({
+            resting: false
+          });
           resolve('success');
         } else {
-          this.startRest(time - 1);
+          this.setState({
+            timeRemaining: this.state.timeRemaining - 1
+          });
         }
+
       }, 1000);
     });
+
+    return res;
   }
 
   startStretch(index) {
@@ -144,7 +142,9 @@ export default class home extends Component {
   }
 
   startRoutine() {
-    this.startStretch(0);
+    this.startRest(10).then((result) => {
+      this.startStretch(0);
+    });
   }
 
   renderStretch() {
@@ -157,7 +157,7 @@ export default class home extends Component {
       );
     }
 
-    if (!this.state.running) {
+    if (!this.state.running && !this.state.resting) {
       return (
         <View style={styles.routineContainer}>
           <Button
@@ -170,6 +170,17 @@ export default class home extends Component {
               this.state.routineList.map(stretch => stretch.name).join(', ')
             }
           </Text>
+        </View>
+      );
+    }
+
+    if (this.state.resting) {
+      return (
+        <View style={styles.routineContainer}>
+          <Text>
+            {this.state.timeRemaining}
+          </Text>
+          <Text>Resting</Text>
         </View>
       );
     }
