@@ -73,29 +73,46 @@ export default class home extends Component {
 
   componentDidMount() {
     const routineList = this.getRoutine(this.props.routine);
-    console.log('routineList', routineList);
     this.setState({
       routineList,
       currentStretch: routineList[0],
       currentStretchNumber: 0,
       timeRemaining: routineList[0].duration
     });
-    this.startStretch(0);
+    this.startRest(5).then((result) => {
+      console.log('start rest result', result);
+      this.startStretch(0);
+    })
   }
 
-  startRest(time) {
-    this.setState({
-      timeRemaining: time,
-      resting: true
-    });
-    this.interval = setInterval(() => {
+  timerTick(time) {
+    setInterval(() => {
       if (time === 0) {
         clearInterval(this.interval);
         this.setState({ resting: false });
+        resolve('success');
       } else {
-        this.startRest(time - 1, cb);
+        this.timerTick(time - 1);
       }
     }, 1000);
+  }
+
+  startRest(time) {
+    let res = new Promise((resolve, reject) => {
+      this.setState({
+        timeRemaining: time,
+        resting: true
+      });
+      this.interval = setInterval(() => {
+        if (time === 0) {
+          clearInterval(this.interval);
+          this.setState({ resting: false });
+          resolve('success');
+        } else {
+          this.startRest(time - 1);
+        }
+      }, 1000);
+    });
   }
 
   startStretch(index) {
