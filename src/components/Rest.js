@@ -9,6 +9,9 @@ const Rest = (props) => {
         {props.timeRemaining}
       </Text>
       <Text>Resting</Text>
+      <Text>
+        Get ready for {props.nextStretch} stretch...
+      </Text>
     </View>
   );
 }

@@ -171,8 +171,9 @@ export default class home extends Component {
     }
 
     if (this.state.resting) {
+      const nextStretchName = this.state.currentStretch.name;
       return (
-        <Rest timeRemaining={this.state.timeRemaining} />
+        <Rest timeRemaining={this.state.timeRemaining} nextStretch={nextStretchName} />
       );
     }
 
