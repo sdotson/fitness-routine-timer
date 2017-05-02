@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
+import Timer from './Timer';
+
 const Stretch = (props) => {
   const { textStyle, viewStyle } = styles;
   return (
     <View style={viewStyle}>
-      <Text>
-        Time Remaining: {props.timeRemaining}
-      </Text>
+      <Timer timeRemaining={props.timeRemaining} />
       <Text>
         Current Exercise: {props.currentStretch && props.currentStretch.name}
       </Text>

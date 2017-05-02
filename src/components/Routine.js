@@ -121,23 +121,34 @@ export default class home extends Component {
       };
     });
 
-    this.interval = setInterval(() => {
-      if (this.state.timeRemaining === 0) {
-        if (this.state.currentStretchNumber < this.state.routineList.length - 1) {
-          let nextIndex = this.state.currentStretchNumber + 1;
-          clearInterval(this.interval);
-          this.startStretch(nextIndex);
+    let res = new Promise((resolve, reject) => {
+      this.interval = setInterval(() => {
+        if (this.state.timeRemaining === 0) {
+          if (this.state.currentStretchNumber < this.state.routineList.length - 1) {
+            let nextIndex = this.state.currentStretchNumber + 1;
+            clearInterval(this.interval);
+            this.startStretchRestCycle(nextIndex);
+          } else {
+            clearInterval(this.interval);
+            this.setState({ routineFinished: true });
+            resolve();
+          }
         } else {
-          clearInterval(this.interval);
-          this.setState({ routineFinished: true });
+          this.setState({
+            timeRemaining: this.state.timeRemaining - 1,
+            running: true
+          });
         }
-      } else {
-        this.setState({
-          timeRemaining: this.state.timeRemaining - 1,
-          running: true
-        });
-      }
-    }, 1000);
+      }, 1000);
+    });
+
+    return res;
+  }
+
+  startStretchRestCycle(index) {
+    return this.startRest(5).then(() => {
+      this.startStretch(index)
+    });
   }
 
   startRoutine() {
@@ -171,9 +182,9 @@ export default class home extends Component {
     }
 
     if (this.state.resting) {
-      const nextStretchName = this.state.currentStretch.name;
+      const nextStretch = this.state.routineList[this.state.currentStretchNumber + 1];
       return (
-        <Rest timeRemaining={this.state.timeRemaining} nextStretch={nextStretchName} />
+        <Rest timeRemaining={this.state.timeRemaining} nextStretch={nextStretch} />
       );
     }
 
