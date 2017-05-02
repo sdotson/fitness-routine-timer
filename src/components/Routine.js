@@ -9,19 +9,10 @@ import {
 
 import config from './config';
 
-import { Header } from './common';
+import { Header, Subheader } from './common';
 import Stretch from './Stretch';
 import Rest from './Rest';
 import Finished from './Finished';
-/*
-TO DO
-- add a rest interval
-- don't start things automatically, add a start button
-- create a container component to reduce header redundancy
-- clean up code
-
-*/
-
 
 export default class home extends Component {
 
@@ -184,15 +175,16 @@ export default class home extends Component {
     if (this.state.resting) {
       const nextStretch = this.state.routineList[this.state.currentStretchNumber + 1];
       return (
-        <Rest timeRemaining={this.state.timeRemaining} nextStretch={nextStretch} />
+        <View style={[styles.routineContainer, styles.restingStyle]}>
+          <Subheader headerText={ this.props.routine + ' routine' } />
+          <Rest timeRemaining={this.state.timeRemaining} nextStretch={nextStretch} />
+        </View>
       );
     }
 
     return (
       <View style={styles.routineContainer}>
-        <Text>
-          Selected routine is: {this.props.routine}
-        </Text>
+        <Subheader headerText={ this.props.routine + ' routine' } />
         <Stretch currentStretch={this.state.currentStretch} timeRemaining={this.state.timeRemaining} />
       </View>
     );
@@ -213,12 +205,15 @@ const styles = {
     flex: 1
   },
   routineContainer: {
-    flex: 1,
+    flex: 0.75,
     backgroundColor: 'yellow',
     justifyContent: 'center',
     alignItems: 'center'
   },
   timeRemaining: {
 
+  },
+  restingStyle: {
+    backgroundColor: 'blue'
   }
 }
