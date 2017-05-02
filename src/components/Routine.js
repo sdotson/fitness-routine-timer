@@ -10,7 +10,9 @@ import {
 import config from './config';
 
 import { Header } from './common';
-
+import Stretch from './Stretch';
+import Rest from './Rest';
+import Finished from './Finished';
 /*
 TO DO
 - add a rest interval
@@ -84,12 +86,6 @@ export default class home extends Component {
     });
   }
 
-  timerTick(time) {
-    this.setState({
-      timeRemaining: time
-    });
-  }
-
   startRest(time) {
     this.setState({
       timeRemaining: time,
@@ -118,6 +114,7 @@ export default class home extends Component {
   startStretch(index) {
     this.setState((prevState, props) => {
       return {
+        running: true,
         currentStretch: prevState.routineList[index],
         currentStretchNumber: index,
         timeRemaining: prevState.routineList[index].duration
@@ -152,10 +149,7 @@ export default class home extends Component {
   renderStretch() {
     if (this.state.routineFinished) {
       return (
-        <View style={styles.routineContainer}>
-          <Text>FINISHED</Text>
-          <Text>The {this.props.routine} routine has finished. Congratulations!</Text>
-        </View>
+        <Finished routineName={this.state.routine} />
       );
     }
 
@@ -178,12 +172,7 @@ export default class home extends Component {
 
     if (this.state.resting) {
       return (
-        <View style={styles.routineContainer}>
-          <Text>
-            {this.state.timeRemaining}
-          </Text>
-          <Text>Resting</Text>
-        </View>
+        <Rest timeRemaining={this.state.timeRemaining} />
       );
     }
 
@@ -192,18 +181,7 @@ export default class home extends Component {
         <Text>
           Selected routine is: {this.props.routine}
         </Text>
-        <Text style={styles.timeRemaining}>
-          Time Remaining: {this.state.timeRemaining}
-        </Text>
-        <Text>
-          Current Exercise: {this.state.currentStretch && this.state.currentStretch.name}
-        </Text>
-        <Text>
-          Current Side: {this.state.currentStretch && this.state.currentStretch.side}
-        </Text>
-        <Text>
-          Resting: {this.state.resting ? 'true' : 'false'}
-        </Text>
+        <Stretch currentStretch={this.state.currentStretch} timeRemaining={this.state.timeRemaining} />
       </View>
     );
   }
