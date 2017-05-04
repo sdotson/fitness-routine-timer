@@ -13,7 +13,7 @@ const Rest = (props) => {
         {props.nextStretch.name}
       </Text>
       <Text style={sideStyle}>
-        {props.nextStretch.side !== 'both' ? `(${props.nextStretch.side} side)` : ''}
+        {props.nextStretch.isOneSided ? `(${props.currentSide} side)` : ''}
       </Text>
     </View>
   );

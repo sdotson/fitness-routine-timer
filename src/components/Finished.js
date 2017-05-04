@@ -6,7 +6,7 @@ const Finished = (props) => {
   return (
     <View style={styles.viewStyle}>
       <Text>FINISHED</Text>
-      <Text>The {props.routineName} routine has finished. Congratulations!</Text>
+      <Text>The {props.routineName} routine has finished.</Text>
     </View>
   );
 }

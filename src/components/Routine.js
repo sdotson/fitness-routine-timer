@@ -20,6 +20,7 @@ export default class home extends Component {
     routine: null,
     routineList: [],
     currentStretch: {},
+    currentSide: null,
     running: false,
     timeRemaining: 2,
     restTimeRemaing: 0,
@@ -43,22 +44,17 @@ export default class home extends Component {
       regular: [
         {
           name: "Hamstring",
-          side: 'left',
-          duration: 2
-        },
-        {
-          name: "Hamstring",
-          side: 'right',
+          isOneSided: true,
           duration: 2
         },
         {
           name: "Butterfly",
-          side: 'both',
+          isOneSided: false,
           duration: 2
         },
         {
           name: "Splits",
-          side: 'both',
+          isOneSided: false,
           duration: 2
         }
       ]
@@ -72,23 +68,20 @@ export default class home extends Component {
     this.setState({
       routineList,
       currentStretch: routineList[0],
-      currentStretchNumber: 0,
-      timeRemaining: routineList[0].duration
+      currentStretchNumber: 0
     });
   }
 
   startRest(time) {
     this.setState({
       timeRemaining: time,
-      resting: true
+      resting: true,
+      running: false
     });
     let res = new Promise((resolve, reject) => {
       this.interval = setInterval(() => {
         if (this.state.timeRemaining === 0) {
           clearInterval(this.interval);
-          this.setState({
-            resting: false
-          });
           resolve('success');
         } else {
           this.setState({
@@ -106,8 +99,7 @@ export default class home extends Component {
     this.setState((prevState, props) => {
       return {
         running: true,
-        currentStretch: prevState.routineList[index],
-        currentStretchNumber: index,
+        resting: false,
         timeRemaining: prevState.routineList[index].duration
       };
     });
@@ -118,7 +110,11 @@ export default class home extends Component {
           if (this.state.currentStretchNumber < this.state.routineList.length - 1) {
             let nextIndex = this.state.currentStretchNumber + 1;
             clearInterval(this.interval);
-            this.startStretchRestCycle(nextIndex);
+            if (this.state.currentSide === 'left') {
+                this.startStretchRestCycle(index);
+            } else {
+              this.startStretchRestCycle(nextIndex);
+            }
           } else {
             clearInterval(this.interval);
             this.setState({ routineFinished: true });
@@ -126,8 +122,7 @@ export default class home extends Component {
           }
         } else {
           this.setState({
-            timeRemaining: this.state.timeRemaining - 1,
-            running: true
+            timeRemaining: this.state.timeRemaining - 1
           });
         }
       }, 1000);
@@ -137,15 +132,27 @@ export default class home extends Component {
   }
 
   startStretchRestCycle(index) {
+    this.setState((prevState) => {
+      let nextSide;
+      if (prevState.currentStretch.isOneSided) {
+        nextSide = prevState.currentSide ? 'right' : 'left';
+      } else {
+        nextSide = null;
+      }
+      return {
+        currentStretch: prevState.routineList[index],
+        currentStretchNumber: index,
+        currentSide: nextSide
+      };
+    });
+
     return this.startRest(5).then(() => {
       this.startStretch(index)
     });
   }
 
   startRoutine() {
-    this.startRest(5).then((result) => {
-      this.startStretch(0);
-    });
+    this.startStretchRestCycle(0);
   }
 
   renderStretch() {
@@ -177,7 +184,11 @@ export default class home extends Component {
       return (
         <View style={[styles.routineContainer, styles.restingStyle]}>
           <Subheader headerText={ this.props.routine + ' routine' } />
-          <Rest timeRemaining={this.state.timeRemaining} nextStretch={nextStretch} />
+          <Rest
+            timeRemaining={this.state.timeRemaining}
+            currentSide={this.state.currentSide}
+            nextStretch={this.state.currentStretch}
+          />
         </View>
       );
     }
@@ -185,7 +196,11 @@ export default class home extends Component {
     return (
       <View style={styles.routineContainer}>
         <Subheader headerText={ this.props.routine + ' routine' } />
-        <Stretch currentStretch={this.state.currentStretch} timeRemaining={this.state.timeRemaining} />
+        <Stretch
+          currentStretch={this.state.currentStretch}
+          currentSide={this.state.currentSide}
+          timeRemaining={this.state.timeRemaining}
+        />
       </View>
     );
   }
