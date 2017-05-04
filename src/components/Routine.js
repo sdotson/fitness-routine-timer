@@ -146,7 +146,7 @@ export default class home extends Component {
       };
     });
 
-    return this.startRest(5).then(() => {
+    return this.startRest(2).then(() => {
       this.startStretch(index)
     });
   }
@@ -158,7 +158,7 @@ export default class home extends Component {
   renderStretch() {
     if (this.state.routineFinished) {
       return (
-        <Finished routineName={this.state.routine} />
+        <Finished routineName={this.state.routine} navigator={this.props.navigator} />
       );
     }
 

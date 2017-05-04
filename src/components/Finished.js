@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 
-const Finished = (props) => {
-  const { textStyle, viewStyle } = styles;
-  return (
-    <View style={styles.viewStyle}>
-      <Text>FINISHED</Text>
-      <Text>The {props.routineName} routine has finished.</Text>
-    </View>
-  );
+class Finished extends Component {
+  navigateToHome() {
+    this.props.navigator.push({
+      name: 'Home'
+    })
+  }
+  render() {
+    const { textStyle, viewStyle } = styles;
+    return (
+      <View style={styles.viewStyle}>
+        <Text>FINISHED</Text>
+        <Text>The {this.props.routineName} routine has finished.</Text>
+        <Button
+          onPress={this.navigateToHome.bind(this)}
+          title="Back to Home"
+          color="#841584"
+          />
+      </View>
+    );
+  }
 }
 
 const styles = {
