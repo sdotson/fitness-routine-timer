@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import config from './config';
+import { getRoutine } from './routines';
 
 import { Header, Subheader } from './common';
 import Stretch from './Stretch';
@@ -30,41 +31,8 @@ export default class home extends Component {
     resting: false
   };
 
-  getRoutine(name) {
-    const routines = {
-      java: [
-
-      ],
-      py: [
-
-      ],
-      js: [
-
-      ],
-      regular: [
-        {
-          name: "Hamstring",
-          isOneSided: true,
-          duration: 2
-        },
-        {
-          name: "Butterfly",
-          isOneSided: false,
-          duration: 2
-        },
-        {
-          name: "Splits",
-          isOneSided: false,
-          duration: 2
-        }
-      ]
-    }
-
-    return routines[name];
-  }
-
   componentDidMount() {
-    const routineList = this.getRoutine(this.props.routine);
+    const routineList = getRoutine(this.props.routine);
     this.setState({
       routineList,
       currentStretch: routineList[0],

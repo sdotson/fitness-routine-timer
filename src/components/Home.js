@@ -7,11 +7,21 @@ import {
   Button
 } from 'react-native';
 
+import { getAllRoutines } from './routines';
 import { Header } from './common';
 
 export default class home extends Component {
   state = {
-    routine: 'regular'
+    routine: null,
+    routines: []
+  }
+
+  componentDidMount() {
+    const routines = Object.keys(getAllRoutines());
+    this.setState({
+      routines: routines,
+      routine: routines[0]
+    });
   }
 
   onRoutineSelect() {
@@ -32,10 +42,7 @@ export default class home extends Component {
             style={styles.picker}
             selectedValue={this.state.routine}
             onValueChange={(routine) => this.setState({routine: routine})}>
-            <Picker.Item label="Regular" value="regular" />
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            <Picker.Item label="Python" value="py" />
+              { this.state.routines.map(routine => <Picker.Item label={routine} value={routine} key={routine} />) }
           </Picker>
           <Button
             style={styles.button}
