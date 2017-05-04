@@ -1,4 +1,4 @@
 export default {
-  initialRest: 5,
-  restBetweenStretches: 3
+  restBetweenStretches: 3,
+  stretchTime: 5
 };

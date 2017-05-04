@@ -22,10 +22,8 @@ export default class home extends Component {
     routineList: [],
     currentStretch: {},
     currentSide: null,
-    running: false,
+    stretching: false,
     timeRemaining: 2,
-    restTimeRemaing: 0,
-    totalStretches: null,
     currentStretchNumber: null,
     routineFinished: false,
     resting: false
@@ -44,7 +42,7 @@ export default class home extends Component {
     this.setState({
       timeRemaining: time,
       resting: true,
-      running: false
+      stretching: false
     });
     let res = new Promise((resolve, reject) => {
       this.interval = setInterval(() => {
@@ -66,7 +64,7 @@ export default class home extends Component {
   startStretch(index) {
     this.setState((prevState, props) => {
       return {
-        running: true,
+        stretching: true,
         resting: false,
         timeRemaining: prevState.routineList[index].duration
       };
@@ -114,7 +112,7 @@ export default class home extends Component {
       };
     });
 
-    return this.startRest(2).then(() => {
+    return this.startRest(config.restBetweenStretches).then(() => {
       this.startStretch(index)
     });
   }
@@ -130,7 +128,7 @@ export default class home extends Component {
       );
     }
 
-    if (!this.state.running && !this.state.resting) {
+    if (!this.state.stretching && !this.state.resting) {
       return (
         <View style={styles.routineContainer}>
           <Button
