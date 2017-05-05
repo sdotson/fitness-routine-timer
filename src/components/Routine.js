@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   Text,
-  Picker,
   View,
   Button
 } from 'react-native';

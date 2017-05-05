@@ -9,6 +9,7 @@ import {
 
 import { getAllRoutines } from './routines';
 import { Header } from './common';
+import Realm from '../realm';
 
 export default class home extends Component {
   state = {
@@ -17,7 +18,14 @@ export default class home extends Component {
   }
 
   componentDidMount() {
-    const routines = Object.keys(getAllRoutines());
+    Realm.write(() => {
+      getAllRoutines().map((routine) => {
+        Realm.create('Routine', { name: routine.name, stretches: routine.stretches });
+      });
+    });
+
+    const routines = Realm.objects('Routine').map(routine => routine.name);
+    
     this.setState({
       routines: routines,
       routine: routines[0]
