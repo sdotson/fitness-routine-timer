@@ -1,5 +1,6 @@
 const routines = [{
   name: "regular",
+  default: true,
   stretches: [
       {
         name: "Hamstring",
@@ -19,6 +20,7 @@ const routines = [{
     ]
   }, {
     name: "legs",
+    default: true,
     stretches: [
       {
         name: "Hamstring",

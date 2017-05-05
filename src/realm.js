@@ -6,6 +6,7 @@ Stretch.schema = {
     properties: {
         isOneSided: {type: 'bool', default: false},
         name: 'string',
+        default:  {type: 'bool', default: false},
         duration: {type: 'int',    default: 0}
     },
 };
@@ -15,8 +16,9 @@ Routine.schema = {
     name: 'Routine',
     properties: {
         name: 'string',
+        default:  {type: 'bool', default: false},
         stretches: {type: 'list', objectType: 'Stretch'},
-    },
+    }
 };
 
 export default new Realm({schema: [Stretch, Routine]});

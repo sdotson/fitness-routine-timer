@@ -17,15 +17,32 @@ export default class home extends Component {
     routines: []
   }
 
+
+// IDEA!!!
+/*
+
+create an additional property to mark exercises and routines as default,
+then add a check before adding new defaults on app load
+simple, low-tech way of fixing the problem
+
+also, abstract out the database functions. this db seeding stuff
+shouldn't happen in the component
+
+AWESOME PROGRESS. EXCITED TO WORK ON THIS TOMORROW.
+
+*/
+
   componentDidMount() {
     Realm.write(() => {
+      let allRoutines = Realm.objects('Routine').filtered('default = true');
+      Realm.delete(allRoutines);
       getAllRoutines().map((routine) => {
-        Realm.create('Routine', { name: routine.name, stretches: routine.stretches });
+        Realm.create('Routine', { name: routine.name, default: true, stretches: routine.stretches });
       });
     });
 
     const routines = Realm.objects('Routine').map(routine => routine.name);
-    
+
     this.setState({
       routines: routines,
       routine: routines[0]
