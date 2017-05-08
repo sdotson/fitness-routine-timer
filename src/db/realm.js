@@ -6,6 +6,7 @@ Stretch.schema = {
     properties: {
         isOneSided: {type: 'bool', default: false},
         name: 'string',
+        type: 'string',
         default:  {type: 'bool', default: false},
         duration: {type: 'int',    default: 0}
     },
