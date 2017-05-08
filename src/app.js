@@ -10,6 +10,7 @@ import {
 
 import Home from './components/Home';
 import Routine from './components/Routine';
+import CreateRoutine from './components/CreateRoutine';
 
 export default class stretchingroutinetimer extends Component {
   render() {
@@ -27,6 +28,9 @@ export default class stretchingroutinetimer extends Component {
      }
      if(route.name == 'Home') {
        return <Home navigator={navigator} {...route.passProps} />
+     }
+     if(route.name == 'Create Routine') {
+       return <CreateRoutine navigator={navigator} {...route.passProps} />
      }
   }
 }

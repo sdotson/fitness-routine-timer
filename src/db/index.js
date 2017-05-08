@@ -11,7 +11,7 @@ export function initializeDatabase() {
   });
 
   realm.write(() => {
-    let allDefaultExercises = realm.objects('Exercise').filtered('default = true');
+    let allDefaultExercises = realm.objects('Exercise');
     realm.delete(allDefaultExercises);
     defaults.exercises.map((exercise) => {
       realm.create('Exercise', {

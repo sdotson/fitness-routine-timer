@@ -7,7 +7,6 @@ import {
   Button
 } from 'react-native';
 
-import { getAllRoutines } from './routines';
 import { Header } from './common';
 import realm from '../db/realm';
 import { initializeDatabase } from '../db';
@@ -21,8 +20,7 @@ export default class home extends Component {
   componentDidMount() {
     initializeDatabase();
     const routines = realm.objects('Routine').map(routine => routine.name);
-    console.log('home', routines[0]);
-    // console.log('---', routines[0].exercises.map(x => Object.assign({}, x)));
+
     this.setState({
       routines: routines,
       routine: routines[0]
@@ -59,7 +57,7 @@ export default class home extends Component {
         <View style={styles.createRoutine}>
           <Button
             style={styles.button}
-            onPress={()=>{}}
+            onPress={() => {this.props.navigator.push({ name: 'Create Routine' })}}
             title="Or create a new routine"
             color="#841584"
           />

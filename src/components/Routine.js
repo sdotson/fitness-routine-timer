@@ -5,9 +5,6 @@ import {
   Button
 } from 'react-native';
 
-import config from './config';
-import { getRoutine } from './routines';
-
 import realm from '../db/realm';
 
 import { Header, Subheader } from './common';
