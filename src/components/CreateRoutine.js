@@ -8,7 +8,6 @@ import {
 import realm from '../db/realm';
 
 import { Header, Subheader } from './common';
-import Omnibox from './Omnibox';
 
 export default class CreateRoutine extends Component {
 
@@ -19,9 +18,9 @@ export default class CreateRoutine extends Component {
 
   componentDidMount() {
     const exercises = realm.objects('Exercise');
-
+    console.log(exercises);
     this.setState({
-      exercises
+      exercises: Array.from(exercises)
     });
   }
 
@@ -44,10 +43,8 @@ export default class CreateRoutine extends Component {
         <Text>
           will need field for routine name
         </Text>
-        <Omnibox
-          data={this.state.exercises}
-          updateDataList={this.updateDataList}
-        />
+
+      { this.state.routine.map(exercise => exercise.name) }
       </View>
     );
   }
