@@ -1,8 +1,8 @@
 import Realm from 'realm';
 
-class Stretch extends Realm.Object {}
-Stretch.schema = {
-    name: 'Stretch',
+class Exercise extends Realm.Object {}
+Exercise.schema = {
+    name: 'Exercise',
     properties: {
         isOneSided: {type: 'bool', default: false},
         name: 'string',
@@ -18,8 +18,8 @@ Routine.schema = {
     properties: {
         name: 'string',
         default:  {type: 'bool', default: false},
-        stretches: {type: 'list', objectType: 'Stretch'},
+        exercises: {type: 'list', objectType: 'Exercise'},
     }
 };
 
-export default new Realm({schema: [Stretch, Routine]});
+export default new Realm({schema: [Exercise, Routine]});

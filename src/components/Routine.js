@@ -8,8 +8,10 @@ import {
 import config from './config';
 import { getRoutine } from './routines';
 
+import realm from '../db/realm';
+
 import { Header, Subheader } from './common';
-import Stretch from './Stretch';
+import Exercise from './Exercise';
 import Rest from './Rest';
 import Finished from './Finished';
 
@@ -17,67 +19,46 @@ export default class home extends Component {
 
   state = {
     routine: null,
-    routineList: [],
-    currentStretch: {},
+    exerciseList: [],
+    currentExercise: {},
     currentSide: null,
-    stretching: false,
+    exercising: false,
     timeRemaining: 2,
-    currentStretchNumber: null,
-    routineFinished: false,
-    resting: false
+    currentExerciseNumber: null,
+    routineFinished: false
   };
 
   componentDidMount() {
-    const routineList = getRoutine(this.props.routine);
+    const routine = realm.objects('Routine').filtered(`name = "${this.props.routine}"`)[0];
+    console.log('routine2', routine.exercises);
+    console.log('exerciseList', Array.from(realm.objects('Routine')[0].exercises));
     this.setState({
-      routineList,
-      currentStretch: routineList[0],
-      currentStretchNumber: 0
+      routine: routine.name,
+      exerciseList: Array.from(routine.exercises),
+      currentExercise: routine.exercises[0],
+      currentExerciseNumber: 0
     });
+    console.log('state', this.state);
   }
 
-  startRest(time) {
-    this.setState({
-      timeRemaining: time,
-      resting: true,
-      stretching: false
-    });
-    let res = new Promise((resolve, reject) => {
-      this.interval = setInterval(() => {
-        if (this.state.timeRemaining === 0) {
-          clearInterval(this.interval);
-          resolve('success');
-        } else {
-          this.setState({
-            timeRemaining: this.state.timeRemaining - 1
-          });
-        }
-
-      }, 1000);
-    });
-
-    return res;
-  }
-
-  startStretch(index) {
+  startExercise(index) {
     this.setState((prevState, props) => {
       return {
-        stretching: true,
-        resting: false,
-        timeRemaining: prevState.routineList[index].duration
+        exercising: true,
+        timeRemaining: prevState.exerciseList[index].duration
       };
     });
 
     let res = new Promise((resolve, reject) => {
       this.interval = setInterval(() => {
         if (this.state.timeRemaining === 0) {
-          if (this.state.currentStretchNumber < this.state.routineList.length - 1) {
-            let nextIndex = this.state.currentStretchNumber + 1;
+          if (this.state.currentExerciseNumber < this.state.exerciseList.length - 1) {
+            let nextIndex = this.state.currentExerciseNumber + 1;
             clearInterval(this.interval);
             if (this.state.currentSide === 'left') {
-                this.startStretchRestCycle(index);
+                this.startExerciseCycle(index);
             } else {
-              this.startStretchRestCycle(nextIndex);
+              this.startExerciseCycle(nextIndex);
             }
           } else {
             clearInterval(this.interval);
@@ -95,38 +76,37 @@ export default class home extends Component {
     return res;
   }
 
-  startStretchRestCycle(index) {
+  startExerciseCycle(index) {
     this.setState((prevState) => {
       let nextSide;
-      if (prevState.currentStretch.isOneSided) {
+      if (prevState.currentExercise.isOneSided) {
         nextSide = prevState.currentSide ? 'right' : 'left';
       } else {
         nextSide = null;
       }
       return {
-        currentStretch: prevState.routineList[index],
-        currentStretchNumber: index,
+        currentExercise: prevState.exerciseList[index],
+        currentExerciseNumber: index,
         currentSide: nextSide
       };
     });
 
-    return this.startRest(config.restBetweenStretches).then(() => {
-      this.startStretch(index)
-    });
+    return this.startExercise(index);
   }
 
   startRoutine() {
-    this.startStretchRestCycle(0);
+    this.startExerciseCycle(0);
   }
 
-  renderStretch() {
+  renderExercise() {
     if (this.state.routineFinished) {
       return (
         <Finished routineName={this.state.routine} navigator={this.props.navigator} />
       );
     }
 
-    if (!this.state.stretching && !this.state.resting) {
+    if (!this.state.exercising) {
+      console.log('----', this.state.exerciseList);
       return (
         <View style={styles.routineContainer}>
           <Button
@@ -136,22 +116,23 @@ export default class home extends Component {
           />
           <Text>
             {
-              this.state.routineList.map(stretch => stretch.name).join(', ')
+              this.state.exerciseList.map(exercise => exercise.name).join(', ')
             }
           </Text>
         </View>
       );
     }
 
-    if (this.state.resting) {
-      const nextStretch = this.state.routineList[this.state.currentStretchNumber + 1];
+    if (this.state.currentExercise.type === 'rest') {
+      const nextExercise = this.state.exerciseList[this.state.currentExerciseNumber + 1];
+      console.log('props', this.props);
       return (
         <View style={[styles.routineContainer, styles.restingStyle]}>
           <Subheader headerText={ this.props.routine + ' routine' } />
           <Rest
             timeRemaining={this.state.timeRemaining}
             currentSide={this.state.currentSide}
-            nextStretch={this.state.currentStretch}
+            nextStretch={nextExercise}
           />
         </View>
       );
@@ -160,8 +141,8 @@ export default class home extends Component {
     return (
       <View style={styles.routineContainer}>
         <Subheader headerText={ this.props.routine + ' routine' } />
-        <Stretch
-          currentStretch={this.state.currentStretch}
+        <Exercise
+          currentExercise={this.state.currentExercise}
           currentSide={this.state.currentSide}
           timeRemaining={this.state.timeRemaining}
         />
@@ -172,8 +153,8 @@ export default class home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header headerText="Stretch Routine Timer" />
-        {this.renderStretch()}
+        <Header headerText="Fitness Routine Timer" />
+        {this.renderExercise()}
       </View>
     );
   }

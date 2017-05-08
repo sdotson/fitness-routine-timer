@@ -21,7 +21,8 @@ export default class home extends Component {
   componentDidMount() {
     initializeDatabase();
     const routines = realm.objects('Routine').map(routine => routine.name);
-
+    console.log('home', routines[0]);
+    // console.log('---', routines[0].exercises.map(x => Object.assign({}, x)));
     this.setState({
       routines: routines,
       routine: routines[0]
@@ -40,7 +41,7 @@ export default class home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header headerText="Stretch Routine Timer" />
+        <Header headerText="Fitness Routine Timer" />
         <View style={styles.selectRoutine}>
           <Picker
             style={styles.picker}

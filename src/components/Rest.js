@@ -8,9 +8,9 @@ const Rest = (props) => {
   return (
     <View style={viewStyle}>
       <Timer timeRemaining={props.timeRemaining} />
-      <Text style={getReadyStyle}>Get Ready!</Text>
+      <Text style={getReadyStyle}>Resting...</Text>
       <Text style={stretchStyle}>
-        {props.nextStretch.name}
+        Next up is {props.nextStretch.name}
       </Text>
       <Text style={sideStyle}>
         {props.nextStretch.isOneSided ? `(${props.currentSide} side)` : ''}

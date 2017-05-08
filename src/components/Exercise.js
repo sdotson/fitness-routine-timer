@@ -8,10 +8,10 @@ const Stretch = (props) => {
     <View style={viewStyle}>
       <Timer timeRemaining={props.timeRemaining} />
       <Text style={stretchStyle}>
-        {props.currentStretch && props.currentStretch.name}
+        {props.currentExercise && props.currentExercise.name}
       </Text>
       <Text>
-        {props.currentStretch.isOneSided ? <Text style={sideStyle}>{props.currentSide} side</Text> : ''}
+        {props.currentSide}
       </Text>
     </View>
   );

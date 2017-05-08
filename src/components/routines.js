@@ -1,7 +1,7 @@
 const routines = [{
   name: "regular",
   default: true,
-  stretches: [
+  exercises: [
       {
         name: "Hamstring",
         isOneSided: true,
@@ -21,7 +21,7 @@ const routines = [{
   }, {
     name: "legs",
     default: true,
-    stretches: [
+    exercises: [
       {
         name: "Hamstring",
         isOneSided: true,
@@ -41,7 +41,8 @@ const routines = [{
   }];
 
 export function getRoutine(name) {
-  return routines;
+  console.log('getRoutine', routines.filter(routine => routine.name === name)[0]);
+  return routines.filter(routine => routine.name === name)[0];
 }
 
 export function getAllRoutines() {
