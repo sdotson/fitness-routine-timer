@@ -16,6 +16,9 @@ export default class CreateRoutine extends Component {
 
   state = {
     exercise: 'Rest',
+    isOneSided: null,
+    duration: null,
+    type: null,
     exercises: [],
     routine: [],
     modalVisible: false
@@ -33,6 +36,10 @@ export default class CreateRoutine extends Component {
   }
 
   onAddExerciseClick() {
+
+  }
+
+  addExercise() {
 
   }
 
@@ -69,15 +76,17 @@ export default class CreateRoutine extends Component {
           </Picker>
           <Text>One side at a time</Text>
           <Switch
-              onValueChange={(value) => {}}
+              onValueChange={(value) => { this.setState({ isOneSided: value }) }}
               value={true} />
           <Input
             label="Type"
             placeholder="Enter rest, stretch, or exercise"
+            onChangeText={(value) => { this.setState({ type: value }) }}
           />
           <Input
             label="Duration"
             placeholder="How long do you want to do this exercise?"
+            onChangeText={(value) => { this.setState({ duration: value }) }}
           />
           <Button
             style={styles.button}
@@ -95,6 +104,12 @@ export default class CreateRoutine extends Component {
         <Text>
           { this.state.routine.map(exercise => exercise.name + ', ') }
         </Text>
+        <Button
+          style={styles.button}
+          onPress={() => { }}
+          title={"Save Routine"}
+          color="#841584"
+          />
       </View>
     );
   }
