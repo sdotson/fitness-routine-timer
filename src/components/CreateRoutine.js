@@ -16,9 +16,7 @@ export default class CreateRoutine extends Component {
 
   state = {
     exercise: 'Rest',
-    isOneSided: null,
     duration: null,
-    type: null,
     exercises: [],
     routine: [],
     modalVisible: false
@@ -40,7 +38,16 @@ export default class CreateRoutine extends Component {
   }
 
   addExercise() {
+    console.log(this.state);
+    const exercise = this.state.exercise;
+    const duration = this.state.duration;
+    const newExercise = Object.assign({}, exercise, { duration });
 
+    this.setState({
+      modalVisible: false,
+      exercise: newExercise,
+      routine: [...this.state.routine, newExercise]
+    });
   }
 
   render() {
@@ -74,15 +81,6 @@ export default class CreateRoutine extends Component {
             onValueChange={(exercise) => this.setState({exercise})}>
               { this.state.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
           </Picker>
-          <Text>One side at a time</Text>
-          <Switch
-              onValueChange={(value) => { this.setState({ isOneSided: value }) }}
-              value={true} />
-          <Input
-            label="Type"
-            placeholder="Enter rest, stretch, or exercise"
-            onChangeText={(value) => { this.setState({ type: value }) }}
-          />
           <Input
             label="Duration"
             placeholder="How long do you want to do this exercise?"
@@ -90,7 +88,7 @@ export default class CreateRoutine extends Component {
           />
           <Button
             style={styles.button}
-            onPress={() => { this.setState({modalVisible: false})}}
+            onPress={this.addExercise}
             title={"Add to routine"}
             color="#841584"
             />
