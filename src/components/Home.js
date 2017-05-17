@@ -8,30 +8,22 @@ import {
   AsyncStorage
 } from 'react-native';
 
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+
 import { Header } from './common';
 import { initializeDatabase } from '../db';
 
-export default class home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routine: null,
-      routines: []
+      routine: 'Regular'
     }
   }
 
   componentDidMount() {
     const that = this;
-    initializeDatabase()
-      .then(function() {
-        AsyncStorage.getItem('routines', function(err, data) {
-          const routines = JSON.parse(data);
-          that.setState({
-            routines: routines,
-            routine: routines[0].name
-          });
-        });
-      });
   }
 
   onRoutineSelect() {
@@ -52,7 +44,7 @@ export default class home extends Component {
             style={styles.picker}
             selectedValue={this.state.routine}
             onValueChange={(routine) => this.setState({routine: routine})}>
-              { this.state.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
+              { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
           </Picker>
           <Button
             style={styles.button}
@@ -99,3 +91,11 @@ const styles = {
     backgroundColor: 'red'
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    routines: state.routines
+  };
+}
+
+export default connect(mapStateToProps, actions)(Home);

@@ -8,7 +8,7 @@ import {
   Navigator
 } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 
 import Home from './components/Home';
 import Routine from './components/Routine';
@@ -16,13 +16,14 @@ import CreateRoutine from './components/CreateRoutine';
 
 import promise from 'redux-promise';
 import reducers from './reducers';
+import { persistStore, autoRehydrate } from 'redux-persist'
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const store = compose(autoRehydrate())(createStore)(reducers);
 
 export default class stretchingroutinetimer extends Component {
   render() {
     return (
-      <Provider store={createStoreWithMiddleware(reducers)}>
+      <Provider store={store}>
         <Navigator
           style={styles.container}
           initialRoute={{ name: 'Home' }}

@@ -2,7 +2,9 @@ import {
   GET_ROUTINES
 } from '../actions/types';
 
-export default function(state = [], action) {
+import defaults from '../db/defaults';
+
+export default function(state = defaults.routines, action) {
   switch(action.type) {
     case GET_ROUTINES:
       return action.payload.data;
@@ -10,3 +12,11 @@ export default function(state = [], action) {
 
   return state;
 }
+
+
+/*
+
+how should app interact with local storage and defaults?
+
+
+*/
