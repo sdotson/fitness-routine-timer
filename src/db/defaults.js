@@ -41,7 +41,7 @@ const defaultValues = {
     }, {
       name: "legs",
       default: true,
-      stretches: [
+      exercises: [
         {
           name: "Hamstring",
           isOneSided: true,

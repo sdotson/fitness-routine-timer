@@ -13,14 +13,17 @@ import realm from '../db/realm';
 import { Header, Subheader, Input } from './common';
 
 export default class CreateRoutine extends Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    exercise: 'Rest',
-    duration: null,
-    exercises: [],
-    routine: [],
-    modalVisible: false
-  };
+    this.state = {
+      exercise: 'Rest',
+      duration: null,
+      exercises: [],
+      routine: [],
+      modalVisible: false
+    };
+  }
 
   componentDidMount() {
     const exercises = realm.objects('Exercise');
@@ -37,9 +40,12 @@ export default class CreateRoutine extends Component {
 
   }
 
+  getExerciseObject(name) {
+    return this.state.exercises.filter((ex) => ex.name === name)[0];
+  }
+
   addExercise() {
-    console.log(this.state);
-    const exercise = this.state.exercise;
+    const exercise = this.getExerciseObject(this.state.exercise);
     const duration = this.state.duration;
     const newExercise = Object.assign({}, exercise, { duration });
 
@@ -48,6 +54,17 @@ export default class CreateRoutine extends Component {
       exercise: newExercise,
       routine: [...this.state.routine, newExercise]
     });
+  }
+
+  renderRoutine() {
+    return (
+      this.state.routine.map((exercise) => {
+        return (
+          <Text key={exercise.name}>{ `${exercise.name} ${exercise.duration}` }</Text>
+        );
+      })
+    );
+
   }
 
   render() {
@@ -88,7 +105,7 @@ export default class CreateRoutine extends Component {
           />
           <Button
             style={styles.button}
-            onPress={this.addExercise}
+            onPress={this.addExercise.bind(this)}
             title={"Add to routine"}
             color="#841584"
             />
@@ -100,7 +117,7 @@ export default class CreateRoutine extends Component {
           Current Routine
         </Text>
         <Text>
-          { this.state.routine.map(exercise => exercise.name + ', ') }
+          { this.renderRoutine() }
         </Text>
         <Button
           style={styles.button}
