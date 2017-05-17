@@ -4,27 +4,34 @@ import {
   Text,
   Picker,
   View,
-  Button
+  Button,
+  AsyncStorage
 } from 'react-native';
 
 import { Header } from './common';
-import realm from '../db/realm';
 import { initializeDatabase } from '../db';
 
 export default class home extends Component {
-  state = {
-    routine: null,
-    routines: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      routine: null,
+      routines: []
+    }
   }
 
   componentDidMount() {
-    initializeDatabase();
-    const routines = realm.objects('Routine').map(routine => routine.name);
-
-    this.setState({
-      routines: routines,
-      routine: routines[0]
-    });
+    const that = this;
+    initializeDatabase()
+      .then(function() {
+        AsyncStorage.getItem('routines', function(err, data) {
+          const routines = JSON.parse(data);
+          that.setState({
+            routines: routines,
+            routine: routines[0].name
+          });
+        });
+      });
   }
 
   onRoutineSelect() {
@@ -45,7 +52,7 @@ export default class home extends Component {
             style={styles.picker}
             selectedValue={this.state.routine}
             onValueChange={(routine) => this.setState({routine: routine})}>
-              { this.state.routines.map(routine => <Picker.Item label={routine} value={routine} key={routine} />) }
+              { this.state.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
           </Picker>
           <Button
             style={styles.button}

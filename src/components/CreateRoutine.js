@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from 'react-native-simple-store';
 import {
   Text,
   View,
@@ -8,8 +9,6 @@ import {
   Modal
 } from 'react-native';
 
-import realm from '../db/realm';
-
 import { Header, Subheader, Input } from './common';
 
 export default class CreateRoutine extends Component {
@@ -18,6 +17,7 @@ export default class CreateRoutine extends Component {
 
     this.state = {
       exercise: 'Rest',
+      routineName: null,
       duration: null,
       exercises: [],
       routine: [],
@@ -26,9 +26,11 @@ export default class CreateRoutine extends Component {
   }
 
   componentDidMount() {
-    const exercises = realm.objects('Exercise');
-    this.setState({
-      exercises: Array.from(exercises)
+    const that = this;
+    store.get('exercises').then(function(exercises) {
+      that.setState({
+        exercises: exercises
+      });
     });
   }
 
@@ -36,8 +38,20 @@ export default class CreateRoutine extends Component {
     console.log('exercise selected');
   }
 
-  onAddExerciseClick() {
+  onRoutineNameChange(event) {
+    this.setState({
+      routineName: event
+    });
+  }
 
+  onSaveRoutine() {
+    store.get('routines').then(function(routines) {
+      const newRoutine = {
+        name: this.state.routineName,
+        exercises: this.state.routine
+      };
+      store.save('routines', [...routines, newRoutine]);
+    });
   }
 
   getExerciseObject(name) {
@@ -46,7 +60,7 @@ export default class CreateRoutine extends Component {
 
   addExercise() {
     const exercise = this.getExerciseObject(this.state.exercise);
-    const duration = this.state.duration;
+    const duration = parseInt(this.state.duration);
     const newExercise = Object.assign({}, exercise, { duration });
 
     this.setState({
@@ -75,6 +89,7 @@ export default class CreateRoutine extends Component {
         <Input
           label="Routine Name"
           placeholder="Enter routine name here"
+          onChangeText={this.onRoutineNameChange.bind(this)}
         />
         <Button
           style={styles.button}
@@ -106,7 +121,7 @@ export default class CreateRoutine extends Component {
           <Button
             style={styles.button}
             onPress={this.addExercise.bind(this)}
-            title={"Add to routine"}
+            title={"Add exercise to routine"}
             color="#841584"
             />
          </View>
@@ -116,12 +131,10 @@ export default class CreateRoutine extends Component {
         <Text>
           Current Routine
         </Text>
-        <Text>
-          { this.renderRoutine() }
-        </Text>
+        { this.renderRoutine() }
         <Button
           style={styles.button}
-          onPress={() => { }}
+          onPress={this.onSaveRoutine.bind(this)}
           title={"Save Routine"}
           color="#841584"
           />

@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
+import store from 'react-native-simple-store';
 import {
   Text,
   View,
   Button
 } from 'react-native';
 
-import realm from '../db/realm';
-
 import { Header, Subheader } from './common';
 import Exercise from './Exercise';
 import Rest from './Rest';
 import Finished from './Finished';
 
-export default class home extends Component {
-
-  state = {
-    routine: null,
-    exerciseList: [],
-    currentExercise: {},
-    currentSide: null,
-    exercising: false,
-    timeRemaining: 2,
-    currentExerciseNumber: null,
-    routineFinished: false
-  };
+export default class Routine extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      routine: null,
+      exerciseList: [],
+      currentExercise: {},
+      currentSide: null,
+      exercising: false,
+      timeRemaining: 2,
+      currentExerciseNumber: null,
+      routineFinished: false
+    };
+  }
 
   componentDidMount() {
-    const routine = realm.objects('Routine').filtered(`name = "${this.props.routine}"`)[0];
-    console.log('routine2', routine.exercises);
-    console.log('exerciseList', Array.from(realm.objects('Routine')[0].exercises));
-    this.setState({
-      routine: routine.name,
-      exerciseList: Array.from(routine.exercises),
-      currentExercise: routine.exercises[0],
-      currentExerciseNumber: 0
+    const that = this;
+    store.get('routines').then(function(routines) {
+      const routine = routines.filter(routine => routine.name === that.props.routine)[0];
+      that.setState({
+        routine: routine.name,
+        exerciseList: routine.exercises,
+        currentExercise: routine.exercises[0],
+        currentExerciseNumber: 0
+      });
     });
-    console.log('state', this.state);
   }
 
   startExercise(index) {
