@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import store from 'react-native-simple-store';
+
 import {
   Text,
   View,
   Button
 } from 'react-native';
 
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+
 import { Header, Subheader } from './common';
 import Exercise from './Exercise';
 import Rest from './Rest';
 import Finished from './Finished';
 
-export default class Routine extends Component {
+class Routine extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,16 +30,14 @@ export default class Routine extends Component {
   }
 
   componentDidMount() {
-    const that = this;
-    store.get('routines').then(function(routines) {
-      const routine = routines.filter(routine => routine.name === that.props.routine)[0];
-      that.setState({
-        routine: routine.name,
-        exerciseList: routine.exercises,
-        currentExercise: routine.exercises[0],
-        currentExerciseNumber: 0
-      });
+    const routine = this.props.routines.filter(routine => routine.name === this.props.routine)[0];
+    this.setState({
+      routine: routine.name,
+      exerciseList: routine.exercises,
+      currentExercise: routine.exercises[0],
+      currentExerciseNumber: 0
     });
+
   }
 
   startExercise(index) {
@@ -175,3 +176,11 @@ const styles = {
     backgroundColor: 'blue'
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    routines: state.routines
+  };
+}
+
+export default connect(mapStateToProps, actions)(Routine);

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import store from 'react-native-simple-store';
 import {
   Text,
   View,
@@ -9,9 +8,13 @@ import {
   Modal
 } from 'react-native';
 
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+
+
 import { Header, Subheader, Input } from './common';
 
-export default class CreateRoutine extends Component {
+class CreateRoutine extends Component {
   constructor(props) {
     super(props);
 
@@ -19,19 +22,9 @@ export default class CreateRoutine extends Component {
       exercise: 'Rest',
       routineName: null,
       duration: null,
-      exercises: [],
       routine: [],
       modalVisible: false
     };
-  }
-
-  componentDidMount() {
-    const that = this;
-    store.get('exercises').then(function(exercises) {
-      that.setState({
-        exercises: exercises
-      });
-    });
   }
 
   onExerciseSelect() {
@@ -45,18 +38,11 @@ export default class CreateRoutine extends Component {
   }
 
   onSaveRoutine() {
-    const that = this;
-    store.get('routines').then(function(routines) {
-      const newRoutine = {
-        name: this.state.routineName,
-        exercises: this.state.routine
-      };
-      store.save('routines', [...routines, newRoutine]);
-    });
+    // need to add save dispatch here
   }
 
   getExerciseObject(name) {
-    return this.state.exercises.filter((ex) => ex.name === name)[0];
+    return this.props.exercises.filter((ex) => ex.name === name)[0];
   }
 
   addExercise() {
@@ -112,7 +98,7 @@ export default class CreateRoutine extends Component {
             style={styles.picker}
             selectedValue={this.state.exercise}
             onValueChange={(exercise) => this.setState({exercise})}>
-              { this.state.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
+              { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
           </Picker>
           <Input
             label="Duration"
@@ -149,3 +135,12 @@ const styles = {
     flex: 1
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    routines: state.routines,
+    exercises: state.exercises
+  };
+}
+
+export default connect(mapStateToProps, actions)(CreateRoutine);

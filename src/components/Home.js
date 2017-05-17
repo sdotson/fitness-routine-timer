@@ -18,7 +18,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routine: 'Regular'
+      routine: 'regular'
     }
   }
 
