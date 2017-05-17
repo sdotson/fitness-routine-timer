@@ -45,6 +45,7 @@ export default class CreateRoutine extends Component {
   }
 
   onSaveRoutine() {
+    const that = this;
     store.get('routines').then(function(routines) {
       const newRoutine = {
         name: this.state.routineName,

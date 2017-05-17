@@ -10,7 +10,10 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
     "react-native-simple-store": "^1.2.0",
-    "realm": "^1.2.0"
+    "react-redux": "^5.0.4",
+    "realm": "^1.2.0",
+    "redux": "^3.6.0",
+    "redux-promise": "^0.5.3"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

@@ -7,18 +7,27 @@ import {
   Button,
   Navigator
 } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
 import Home from './components/Home';
 import Routine from './components/Routine';
 import CreateRoutine from './components/CreateRoutine';
 
+import promise from 'redux-promise';
+import reducers from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
 export default class stretchingroutinetimer extends Component {
   render() {
     return (
-      <Navigator
-        style={styles.container}
-        initialRoute={{ name: 'Home' }}
-        renderScene={this.renderScene} />
+      <Provider store={createStoreWithMiddleware(reducers)}>
+        <Navigator
+          style={styles.container}
+          initialRoute={{ name: 'Home' }}
+          renderScene={this.renderScene} />
+      </Provider>
     );
   }
 
