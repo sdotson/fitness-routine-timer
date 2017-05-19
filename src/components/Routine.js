@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-
 import {
   Text,
   View,
   Button
 } from 'react-native';
-
-import * as actions from '../actions';
 import { connect } from 'react-redux';
-
 import { Header, Subheader } from './common';
 import Exercise from './Exercise';
 import Rest from './Rest';
@@ -183,4 +179,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(Routine);
+export default connect(mapStateToProps)(Routine);
