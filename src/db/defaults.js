@@ -83,7 +83,77 @@ const defaultValues = {
         duration: 2
       },
       {
-        name: "Hamstring",
+        name: "Meditate",
+        isOneSided: false,
+        default: true,
+        type: 'rest',
+        duration: 2
+      },
+      {
+        name: "Cobra Abdominal stretch",
+        isOneSided: false,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Child's pose",
+        isOneSided: false,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Seated Hamstring (one-sided)",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Floor hip",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Pigeon",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Standing Quad",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Cat Stretch",
+        isOneSided: false,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Lunge Quad",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Lunge Quad (holding foot)",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Seated Hamstring",
         isOneSided: true,
         default: true,
         type: 'stretch',
@@ -99,6 +169,27 @@ const defaultValues = {
       {
         name: "Splits",
         isOneSided: false,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Wrist Extension",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Wrist Flexion",
+        isOneSided: true,
+        default: true,
+        type: 'stretch',
+        duration: 2
+      },
+      {
+        name: "Thumb",
+        isOneSided: true,
         default: true,
         type: 'stretch',
         duration: 2

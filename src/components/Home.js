@@ -7,23 +7,15 @@ import {
   Button,
   AsyncStorage
 } from 'react-native';
-
-import * as actions from '../actions';
 import { connect } from 'react-redux';
-
 import { Header } from './common';
-import { initializeDatabase } from '../db';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routine: 'regular'
+      routine: props.routines[0].name
     }
-  }
-
-  componentDidMount() {
-    const that = this;
   }
 
   onRoutineSelect() {
@@ -98,4 +90,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(Home);
+export default connect(mapStateToProps)(Home);
