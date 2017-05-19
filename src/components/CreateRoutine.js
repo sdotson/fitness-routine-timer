@@ -88,7 +88,7 @@ class CreateRoutine extends Component {
           <Picker
             style={styles.picker}
             selectedValue={this.state.selectedExerciseName}
-            onValueChange={(exercise) => this.setState({exercise})}>
+            onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
               { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
           </Picker>
           <Input
