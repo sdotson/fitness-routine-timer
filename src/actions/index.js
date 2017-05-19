@@ -3,6 +3,7 @@ import store from 'react-native-simple-store';
 
 import {
   GET_EXERCISES,
+  ADD_EXERCISE_TO_ROUTINE,
   GET_ROUTINES
 } from './types';
 
@@ -27,5 +28,12 @@ export function getRoutines() {
   return {
     type: GET_ROUTINES,
     payload: request
+  };
+}
+
+export function addExerciseToRoutine(exercise) {
+  return {
+    type: ADD_EXERCISE_TO_ROUTINE,
+    payload: exercise
   };
 }

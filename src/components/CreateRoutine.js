@@ -7,11 +7,8 @@ import {
   Switch,
   Modal
 } from 'react-native';
-
-import * as actions from '../actions';
 import { connect } from 'react-redux';
-
-
+import * as actions from '../actions';
 import { Header, Subheader, Input } from './common';
 
 class CreateRoutine extends Component {
@@ -19,16 +16,11 @@ class CreateRoutine extends Component {
     super(props);
 
     this.state = {
-      exercise: 'Rest',
+      selectedExerciseName: 'Rest',
       routineName: null,
       duration: null,
-      routine: [],
       modalVisible: false
     };
-  }
-
-  onExerciseSelect() {
-    console.log('exercise selected');
   }
 
   onRoutineNameChange(event) {
@@ -46,22 +38,21 @@ class CreateRoutine extends Component {
   }
 
   addExercise() {
-    const exercise = this.getExerciseObject(this.state.exercise);
+    const exercise = this.getExerciseObject(this.state.selectedExerciseName);
     const duration = parseInt(this.state.duration);
     const newExercise = Object.assign({}, exercise, { duration });
 
     this.setState({
-      modalVisible: false,
-      exercise: newExercise,
-      routine: [...this.state.routine, newExercise]
+      modalVisible: false
     });
+    this.props.addExerciseToRoutine(newExercise);
   }
 
   renderRoutine() {
     return (
-      this.state.routine.map((exercise) => {
+      this.props.newRoutine.map((exercise, index) => {
         return (
-          <Text key={exercise.name}>{ `${exercise.name} ${exercise.duration}` }</Text>
+          <Text key={index}>{ `${exercise.name} ${exercise.duration}` }</Text>
         );
       })
     );
@@ -96,7 +87,7 @@ class CreateRoutine extends Component {
          <View style={{marginTop: 22}}>
           <Picker
             style={styles.picker}
-            selectedValue={this.state.exercise}
+            selectedValue={this.state.selectedExerciseName}
             onValueChange={(exercise) => this.setState({exercise})}>
               { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
           </Picker>
@@ -139,7 +130,8 @@ const styles = {
 function mapStateToProps(state) {
   return {
     routines: state.routines,
-    exercises: state.exercises
+    exercises: state.exercises,
+    newRoutine: state.newRoutine
   };
 }
 

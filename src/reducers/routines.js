@@ -12,11 +12,3 @@ export default function(state = defaults.routines, action) {
 
   return state;
 }
-
-
-/*
-
-how should app interact with local storage and defaults?
-
-
-*/
