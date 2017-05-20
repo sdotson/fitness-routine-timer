@@ -33,7 +33,6 @@ const styles ={
     fontSize: 18
   },
   containerStyle: {
-    alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10
   }

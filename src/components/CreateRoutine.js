@@ -92,7 +92,7 @@ class CreateRoutine extends Component {
             style={styles.button}
             onPress={() => { this.setState({modalVisible: true})}}
             title={"Add to routine"}
-            color="#758E4F"
+            color="#F26419"
             />
           <Modal
             animationType={"slide"}
