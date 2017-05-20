@@ -5,7 +5,8 @@ import {
   Button,
   Picker,
   Switch,
-  Modal
+  Modal,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -30,13 +31,35 @@ class CreateRoutine extends Component {
     });
   }
 
+  validateRoutine() {
+    let errors = [];
+
+    if (!this.state.routineName) {
+      errors.push("Routine must have a name.");
+    }
+
+    if (this.props.newRoutine.length === 0) {
+      errors.push("Routine must have at least one exercise, stretch, or rest.");
+    }
+
+    if (errors.length > 0) {
+      Alert.alert("Error", errors.join("\n"));
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   onSaveRoutine() {
-    this.props.addRoutine({
-      name: this.state.routineName,
-      default: false,
-      exercises: this.props.newRoutine
-    });
-    this.props.navigator.push({ name: 'Home' });
+    const valid = this.validateRoutine();
+    if (valid) {
+      this.props.addRoutine({
+        name: this.state.routineName,
+        default: false,
+        exercises: this.props.newRoutine
+      });
+      this.props.navigator.push({ name: 'Home' });
+    }
   }
 
   getExerciseObject(name) {
@@ -53,10 +76,6 @@ class CreateRoutine extends Component {
     });
 
     this.props.addExerciseToRoutine(newExercise);
-  }
-
-  onDelete() {
-
   }
 
   render() {

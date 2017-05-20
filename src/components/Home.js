@@ -25,6 +25,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log('routines', this.props.routines);
     return (
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />

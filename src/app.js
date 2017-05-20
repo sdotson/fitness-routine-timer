@@ -20,7 +20,8 @@ import reducers from './reducers';
 import { persistStore, autoRehydrate } from 'redux-persist'
 
 const store = compose(autoRehydrate())(createStore)(reducers);
-
+// Uncomment below when something horrible happens to reset
+// persistStore(store, {storage: AsyncStorage}).purge();
 persistStore(store, {storage: AsyncStorage});
 
 export default class fitnessroutinetimer extends Component {
