@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  Text,
   Picker,
   View,
-  Button,
-  AsyncStorage
+  Button
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Header } from './common';
