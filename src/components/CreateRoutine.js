@@ -30,7 +30,12 @@ class CreateRoutine extends Component {
   }
 
   onSaveRoutine() {
-    // need to add save dispatch here
+    this.props.addRoutine({
+      name: this.state.routineName,
+      default: false,
+      exercises: this.props.newRoutine
+    });
+    this.props.navigator.push({ name: 'Home' });
   }
 
   getExerciseObject(name) {
@@ -45,6 +50,7 @@ class CreateRoutine extends Component {
     this.setState({
       modalVisible: false
     });
+
     this.props.addExerciseToRoutine(newExercise);
   }
 

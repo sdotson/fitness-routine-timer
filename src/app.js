@@ -5,7 +5,8 @@ import {
   Picker,
   View,
   Button,
-  Navigator
+  Navigator,
+  AsyncStorage
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
@@ -19,6 +20,8 @@ import reducers from './reducers';
 import { persistStore, autoRehydrate } from 'redux-persist'
 
 const store = compose(autoRehydrate())(createStore)(reducers);
+
+persistStore(store, {storage: AsyncStorage});
 
 export default class stretchingroutinetimer extends Component {
   render() {
