@@ -106,7 +106,7 @@ class Routine extends Component {
           <Button
             onPress={this.startRoutine.bind(this)}
             title="Start Routine"
-            color="#841584"
+            color="#F26419"
           />
           <Text>
             {

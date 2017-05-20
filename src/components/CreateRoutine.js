@@ -99,6 +99,7 @@ class CreateRoutine extends Component {
             transparent={false}
             visible={this.state.modalVisible}
             style={styles.modal}
+            onRequestClose={()=>{}}
           >
             <Header headerText="Fitness Routine Timer" />
             <Subheader headerText="Add Exercise to Routine" />
@@ -112,7 +113,8 @@ class CreateRoutine extends Component {
               <Input
                 placeholder="Duration of exercise"
                 onChangeText={(value) => { this.setState({ duration: value }) }}
-                />
+                keyboardType="numeric"
+              />
               <Button
                 style={styles.button}
                 onPress={this.addExercise.bind(this)}
@@ -121,9 +123,6 @@ class CreateRoutine extends Component {
                 />
             </View>
           </Modal>
-          <Text>
-            { this.props.newRoutine.length === 0 ? 'Click button above to add exercises, stretches, and rests to this routine.' : ''}
-          </Text>
           <RoutineList routine={this.props.newRoutine} />
           <Button
             style={styles.button}

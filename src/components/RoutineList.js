@@ -17,12 +17,14 @@ function formatSeconds(seconds) {
 
 class RoutineList extends Component {
   deleteExercise(index) {
-    console.log('index to be deleted: ', index);
     this.props.deleteExerciseFromRoutine(index);
   }
   render() {
     return (
-      <View>
+      <View style={styles.routineList}>
+        <Text>
+          { this.props.routine.length === 0 ? 'Click button above to add exercises, stretches, and rests to this routine.' : ''}
+        </Text>
         {this.props.routine.map((exercise, index) => {
           return (
             <View key={index} style={styles.routineItem}>
@@ -46,6 +48,10 @@ class RoutineList extends Component {
 }
 
 const styles = {
+  routineList : {
+    paddingTop: 20,
+    paddingBottom: 20
+  },
   routineItem: {
     backgroundColor: '#eee',
     marginBottom: 10,
