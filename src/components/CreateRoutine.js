@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Header, Subheader, Input } from './common';
+import RoutineList from './RoutineList';
 
 class CreateRoutine extends Component {
   constructor(props) {
@@ -54,14 +55,7 @@ class CreateRoutine extends Component {
     this.props.addExerciseToRoutine(newExercise);
   }
 
-  renderRoutine() {
-    return (
-      this.props.newRoutine.map((exercise, index) => {
-        return (
-          <Text key={index}>{ `${exercise.name} ${exercise.duration}` }</Text>
-        );
-      })
-    );
+  onDelete() {
 
   }
 
@@ -70,63 +64,74 @@ class CreateRoutine extends Component {
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
         <Subheader headerText="Create Routine" />
-        <Input
-          placeholder="Enter routine name here"
-          onChangeText={this.onRoutineNameChange.bind(this)}
-        />
-        <Button
-          style={styles.button}
-          onPress={() => { this.setState({modalVisible: true})}}
-          title={"Add to routine"}
-          color="#841584"
-        />
-        <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-          >
-          <Text>Add exercise</Text>
-         <View style={{marginTop: 22}}>
-          <Picker
-            style={styles.picker}
-            selectedValue={this.state.selectedExerciseName}
-            onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
-              { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
-          </Picker>
+        <View style={styles.content}>
           <Input
-            label="Duration"
-            placeholder="How long do you want to do this exercise?"
-            onChangeText={(value) => { this.setState({ duration: value }) }}
-          />
+            placeholder="Enter routine name here"
+            onChangeText={this.onRoutineNameChange.bind(this)}
+            />
           <Button
             style={styles.button}
-            onPress={this.addExercise.bind(this)}
-            title={"Add exercise to routine"}
+            onPress={() => { this.setState({modalVisible: true})}}
+            title={"Add to routine"}
             color="#841584"
             />
-         </View>
-        </Modal>
-
-
-        <Text>
-          Current Routine
-        </Text>
-        { this.renderRoutine() }
-        <Button
-          style={styles.button}
-          onPress={this.onSaveRoutine.bind(this)}
-          title={"Save Routine"}
-          color="#841584"
-          />
+          <Modal
+            animationType={"slide"}
+            transparent={false}
+            visible={this.state.modalVisible}
+            style={styles.modal}
+          >
+            <Header headerText="Fitness Routine Timer" />
+            <Subheader headerText="Add Exercise to Routine" />
+            <View style={styles.modalContent}>
+              <Picker
+                style={styles.picker}
+                selectedValue={this.state.selectedExerciseName}
+                onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
+                { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
+              </Picker>
+              <Input
+                placeholder="Duration of exercise"
+                onChangeText={(value) => { this.setState({ duration: value }) }}
+                />
+              <Button
+                style={styles.button}
+                onPress={this.addExercise.bind(this)}
+                title={"Add exercise to routine"}
+                color="#841584"
+                />
+            </View>
+          </Modal>
+          <Text>
+            { this.props.newRoutine.length === 0 ? 'Click button above to add exercises, stretches, and rests to this routine.' : ''}
+          </Text>
+          <RoutineList routine={this.props.newRoutine} />
+          <Button
+            style={styles.button}
+            onPress={this.onSaveRoutine.bind(this)}
+            title={"Save Routine"}
+            color="#841584"
+            />
+        </View>
       </View>
     );
   }
 }
 
 const styles = {
+  content: {
+    paddingLeft: 15,
+    paddingRight: 15
+  },
   container: {
     flex: 1
+  },
+  modalText: {
+    paddingTop: 50
+  },
+  modalContent: {
+    paddingLeft: 15,
+    paddingRight: 15
   }
 }
 

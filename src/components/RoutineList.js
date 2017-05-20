@@ -1,0 +1,75 @@
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+function formatSeconds(seconds) {
+  if (seconds > 60) {
+    const minutes = Math.floor(seconds/60);
+    const remainder = seconds - minutes * 60;
+    const mEnding = minutes > 1 ? 's' : '';
+    const sEnding = remainder > 1 ? 's' : '';
+    return `${minutes} minute${mEnding}, ${remainder} second${sEnding}`;
+  } else {
+    return `${seconds} seconds`;
+  }
+}
+
+class RoutineList extends Component {
+  deleteExercise(index) {
+    console.log('index to be deleted: ', index);
+    this.props.deleteExerciseFromRoutine(index);
+  }
+  render() {
+    return (
+      <View>
+        {this.props.routine.map((exercise, index) => {
+          return (
+            <View key={index} style={styles.routineItem}>
+              <Text style={styles.routineItemName}>
+                {exercise.name}
+              </Text>
+              <Text style={styles.routineItemDuration}>
+                {formatSeconds(exercise.duration)}
+              </Text>
+              <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.closeIcon}>
+                <Text>
+                  X
+                </Text>
+              </TouchableOpacity>
+            </View>
+          );
+        })}
+      </View>
+    )
+  }
+}
+
+const styles = {
+  routineItem: {
+    backgroundColor: '#eee',
+    marginBottom: 10,
+    padding: 5,
+    position: 'relative'
+  },
+  routineItemName: {
+    fontSize: 20
+  },
+  routineItemDuration: {
+    color: '#777',
+    fontSize: 12
+  },
+  closeIcon: {
+    position: 'absolute',
+    right: 5,
+    top: 5
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    routine: state.newRoutine
+  };
+}
+
+export default connect(mapStateToProps, actions)(RoutineList);
