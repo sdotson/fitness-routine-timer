@@ -23,7 +23,7 @@ const store = compose(autoRehydrate())(createStore)(reducers);
 
 persistStore(store, {storage: AsyncStorage});
 
-export default class stretchingroutinetimer extends Component {
+export default class fitnessroutinetimer extends Component {
   render() {
     return (
       <Provider store={store}>

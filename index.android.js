@@ -10,4 +10,4 @@ import {
 
 import App from './src/app';
 
-AppRegistry.registerComponent('stretchingroutinetimer', () => App);
+AppRegistry.registerComponent('fitnessroutinetimer', () => App);
