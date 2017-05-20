@@ -161,7 +161,7 @@ const styles = {
   },
   routineContainer: {
     flex: 0.75,
-    backgroundColor: 'yellow',
+    backgroundColor: '#E8D0A9',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -169,7 +169,7 @@ const styles = {
 
   },
   restingStyle: {
-    backgroundColor: 'blue'
+    backgroundColor: '#C1DAD6'
   }
 }
 

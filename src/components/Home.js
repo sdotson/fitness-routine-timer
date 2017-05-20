@@ -57,9 +57,7 @@ class Home extends Component {
 
 const styles = {
   container: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    backgroundColor: '#ccc',
+    backgroundColor: '#fff',
     flex: 1
   },
   selectRoutineText: {
@@ -68,13 +66,17 @@ const styles = {
   selectRoutine: {
     alignItems: 'center',
     justifyContent:'center',
-    flex: 1
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15
   },
   picker: {
     alignSelf: 'stretch'
   },
   createRoutine: {
     flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15
   },
   button: {
     backgroundColor: 'red'
