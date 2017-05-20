@@ -65,17 +65,14 @@ const styles = {
     fontSize: 18
   },
   selectRoutine: {
-    alignItems: 'center',
-    justifyContent:'center',
-    flex: 1,
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    marginBottom: 30
   },
   picker: {
     alignSelf: 'stretch'
   },
   createRoutine: {
-    flex: 1,
     paddingLeft: 15,
     paddingRight: 15
   },
