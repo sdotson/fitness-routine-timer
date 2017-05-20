@@ -16,7 +16,7 @@ class Finished extends Component {
         <Button
           onPress={this.navigateToHome.bind(this)}
           title="Back to Home"
-          color="#841584"
+          color="#F26419"
           />
       </View>
     );
@@ -30,8 +30,7 @@ const styles = {
   viewStyle: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#6D929B'
+    alignItems: 'center'
   }
 };
 

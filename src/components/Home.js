@@ -40,7 +40,7 @@ class Home extends Component {
             style={styles.button}
             onPress={this.onRoutineSelect.bind(this)}
             title={"Select " + this.state.routine + ' routine'}
-            color="#841584"
+            color="#F26419"
           />
         </View>
         <View style={styles.createRoutine}>
@@ -48,7 +48,7 @@ class Home extends Component {
             style={styles.button}
             onPress={() => {this.props.navigator.push({ name: 'Create Routine' })}}
             title="Or create a new routine"
-            color="#841584"
+            color="#F26419"
           />
         </View>
       </View>
@@ -58,7 +58,7 @@ class Home extends Component {
 
 const styles = {
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#eee',
     flex: 1
   },
   selectRoutineText: {

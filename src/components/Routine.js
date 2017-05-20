@@ -158,15 +158,15 @@ const styles = {
   },
   routineContainer: {
     flex: 0.75,
-    backgroundColor: '#E8D0A9',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#eee'
   },
   timeRemaining: {
 
   },
   restingStyle: {
-    backgroundColor: '#C1DAD6'
+
   }
 }
 

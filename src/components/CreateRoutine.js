@@ -92,7 +92,7 @@ class CreateRoutine extends Component {
             style={styles.button}
             onPress={() => { this.setState({modalVisible: true})}}
             title={"Add to routine"}
-            color="#841584"
+            color="#758E4F"
             />
           <Modal
             animationType={"slide"}
@@ -117,7 +117,7 @@ class CreateRoutine extends Component {
                 style={styles.button}
                 onPress={this.addExercise.bind(this)}
                 title={"Add exercise to routine"}
-                color="#841584"
+                color="#F26419"
                 />
             </View>
           </Modal>
@@ -129,7 +129,7 @@ class CreateRoutine extends Component {
             style={styles.button}
             onPress={this.onSaveRoutine.bind(this)}
             title={"Save Routine"}
-            color="#841584"
+            color="#F26419"
             />
         </View>
       </View>
