@@ -12,14 +12,16 @@ const Subheader = (props) => {
 
 const styles = {
   textStyle: {
-    fontSize: 16
+    fontSize: 16,
+    color: '#fff'
   },
   viewStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 30,
     paddingTop: 10,
-    position: 'relative'
+    paddingBottom: 10,
+    position: 'relative',
+    backgroundColor: '#4d4d4d'
   }
 };
 

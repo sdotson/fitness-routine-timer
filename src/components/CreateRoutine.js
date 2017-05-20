@@ -71,7 +71,6 @@ class CreateRoutine extends Component {
         <Header headerText="Fitness Routine Timer" />
         <Subheader headerText="Create Routine" />
         <Input
-          label="Routine Name"
           placeholder="Enter routine name here"
           onChangeText={this.onRoutineNameChange.bind(this)}
         />
@@ -81,8 +80,6 @@ class CreateRoutine extends Component {
           title={"Add to routine"}
           color="#841584"
         />
-
-
         <Modal
           animationType={"slide"}
           transparent={false}

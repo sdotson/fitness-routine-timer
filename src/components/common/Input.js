@@ -22,19 +22,18 @@ const styles ={
   inputStyle: {
     color: '#000',
     paddingRight: 5,
-    paddingLeft: 5,
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingBottom: 5,
     fontSize: 18,
-    lineHeight: 23,
-    height: 23,
-    backgroundColor: '#ddd'
+    backgroundColor: '#eee',
+    height: 34
   },
   labelStyle: {
-    paddingLeft: 20,
     fontSize: 18
   },
   containerStyle: {
     alignItems: 'center',
-    backgroundColor: 'pink',
     paddingTop: 10,
     paddingBottom: 10
   }

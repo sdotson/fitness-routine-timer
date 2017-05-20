@@ -101,7 +101,6 @@ class Routine extends Component {
     }
 
     if (!this.state.exercising) {
-      console.log('----', this.state.exerciseList);
       return (
         <View style={styles.routineContainer}>
           <Button
@@ -120,10 +119,8 @@ class Routine extends Component {
 
     if (this.state.currentExercise.type === 'rest') {
       const nextExercise = this.state.exerciseList[this.state.currentExerciseNumber + 1];
-      console.log('props', this.props);
       return (
         <View style={[styles.routineContainer, styles.restingStyle]}>
-          <Subheader headerText={ this.props.routine + ' routine' } />
           <Rest
             timeRemaining={this.state.timeRemaining}
             currentSide={this.state.currentSide}
@@ -135,7 +132,6 @@ class Routine extends Component {
 
     return (
       <View style={styles.routineContainer}>
-        <Subheader headerText={ this.props.routine + ' routine' } />
         <Exercise
           currentExercise={this.state.currentExercise}
           currentSide={this.state.currentSide}
@@ -149,6 +145,7 @@ class Routine extends Component {
     return (
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
+        <Subheader headerText={ this.props.routine + ' routine' } />
         {this.renderExercise()}
       </View>
     );
