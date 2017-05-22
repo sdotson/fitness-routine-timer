@@ -7,7 +7,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.16.1",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
     "react-native-simple-store": "^1.2.0",
