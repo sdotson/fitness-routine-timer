@@ -51,6 +51,21 @@ class CreateRoutine extends Component {
     }
   }
 
+  validateExercise() {
+    let errors = [];
+    console.log('this.state.duration', this.state.duration);
+    if (this.state.duration === "" || !this.state.duration) {
+      errors.push("Exercise must have a duration.");
+    }
+
+    if (errors.length > 0) {
+      Alert.alert("Error", errors.join("\n"));
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   onSaveRoutine() {
     const valid = this.validateRoutine();
     if (valid) {
@@ -68,15 +83,18 @@ class CreateRoutine extends Component {
   }
 
   addExercise() {
-    const exercise = this.getExerciseObject(this.state.selectedExerciseName);
-    const duration = parseInt(this.state.duration);
-    const newExercise = Object.assign({}, exercise, { duration });
+    const isValid = this.validateExercise();
+    if (isValid) {
+      const duration = parseInt(this.state.duration);
+      const exercise = this.getExerciseObject(this.state.selectedExerciseName);
+      const newExercise = Object.assign({}, exercise, { duration });
 
-    this.setState({
-      modalVisible: false
-    });
+      this.setState({
+        modalVisible: false
+      });
 
-    this.props.addExerciseToRoutine(newExercise);
+      this.props.addExerciseToRoutine(newExercise);
+    }
   }
 
   render() {
