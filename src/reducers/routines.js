@@ -2,7 +2,6 @@ import {
   GET_ROUTINES,
   ADD_ROUTINE
 } from '../actions/types';
-
 import defaults from '../db/defaults';
 
 export default function(state = defaults.routines, action) {

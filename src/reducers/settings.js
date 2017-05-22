@@ -1,11 +1,11 @@
 import {
-  GET_EXERCISES
+  UPDATE_SETTINGS
 } from '../actions/types';
 import defaults from '../db/defaults';
 
-export default function(state = defaults.exercises, action) {
+export default function(state = defaults.settings, action) {
   switch(action.type) {
-    case GET_EXERCISES:
+    case UPDATE_SETTINGS:
       return action.payload.data;
   }
 

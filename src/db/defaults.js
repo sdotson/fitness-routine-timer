@@ -1,7 +1,8 @@
 const defaultValues = {
   settings: {
-    rest: 3,
-    duration: 5
+    rest: 10,
+    restBetween: 5,
+    duration: 45
   },
   routines: [{
     name: "regular",
