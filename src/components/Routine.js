@@ -38,9 +38,10 @@ class Routine extends Component {
 
   startExercise(index) {
     this.setState((prevState, props) => {
+      const timeRemaining = prevState.currentSide === 'switch to right side' ? 10 : prevState.exerciseList[index].duration;
       return {
         exercising: true,
-        timeRemaining: prevState.exerciseList[index].duration
+        timeRemaining
       };
     });
 
@@ -50,7 +51,7 @@ class Routine extends Component {
           if (this.state.currentExerciseNumber < this.state.exerciseList.length - 1) {
             let nextIndex = this.state.currentExerciseNumber + 1;
             clearInterval(this.interval);
-            if (this.state.currentSide === 'left') {
+            if (this.state.currentSide === 'left' || this.state.currentSide === 'switch to right side') {
                 this.startExerciseCycle(index);
             } else {
               this.startExerciseCycle(nextIndex);
@@ -75,7 +76,14 @@ class Routine extends Component {
     this.setState((prevState) => {
       let nextSide;
       if (prevState.currentExercise.isOneSided) {
-        nextSide = prevState.currentSide ? 'right' : 'left';
+        if (!prevState.currentSide) {
+          nextSide = 'left';
+        } else if (prevState.currentSide === 'left') {
+          nextSide = 'switch to right side';
+        } else {
+          nextSide = 'right';
+        }
+        // nextSide = prevState.currentSide ? 'right' : 'left';
       } else {
         nextSide = null;
       }
