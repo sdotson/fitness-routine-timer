@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Text,
+  ScrollView,
   View,
   Button,
   Picker,
@@ -83,7 +84,7 @@ class CreateRoutine extends Component {
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
         <Subheader headerText="Create Routine" />
-        <View style={styles.content}>
+        <ScrollView style={styles.content}>
           <Input
             placeholder="Enter routine name here"
             onChangeText={this.onRoutineNameChange.bind(this)}
@@ -130,7 +131,7 @@ class CreateRoutine extends Component {
             title={"Save Routine"}
             color="#F26419"
             />
-        </View>
+        </ScrollView>
       </View>
     );
   }
