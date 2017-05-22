@@ -98,6 +98,7 @@ class CreateRoutine extends Component {
   }
 
   render() {
+    console.log(this.props.settings);
     return (
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
@@ -130,6 +131,7 @@ class CreateRoutine extends Component {
                 { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
               </Picker>
               <Input
+                defaultValue={this.props.settings.duration}
                 placeholder="Duration of exercise"
                 onChangeText={(value) => { this.setState({ duration: value }) }}
                 keyboardType="numeric"
@@ -176,7 +178,8 @@ function mapStateToProps(state) {
   return {
     routines: state.routines,
     exercises: state.exercises,
-    newRoutine: state.newRoutine
+    newRoutine: state.newRoutine,
+    settings: state.settings
   };
 }
 
