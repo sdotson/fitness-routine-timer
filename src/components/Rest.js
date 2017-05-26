@@ -10,10 +10,10 @@ const Rest = (props) => {
       <Timer timeRemaining={props.timeRemaining} />
       <Text style={getReadyStyle}>Resting...</Text>
       <Text style={stretchStyle}>
-        Next up is {props.nextStretch.name}
+        {props.nextStretch ? 'Next up is ' + props.nextStretch.name : ''}
       </Text>
       <Text style={sideStyle}>
-        {props.nextStretch.isOneSided ? `(${props.currentSide} side)` : ''}
+        {props.nextStretch && props.nextStretch.isOneSided ? `(${props.currentSide} side)` : ''}
       </Text>
     </View>
   );

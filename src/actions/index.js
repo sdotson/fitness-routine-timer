@@ -2,7 +2,8 @@ import {
   ADD_EXERCISE_TO_ROUTINE,
   DELETE_EXERCISE_FROM_ROUTINE,
   ADD_ROUTINE,
-  UPDATE_SETTINGS
+  UPDATE_SETTINGS,
+  ADD_EXERCISE
 } from './types';
 
 export function addExerciseToRoutine(exercise) {
@@ -23,6 +24,13 @@ export function addRoutine(routine) {
   return {
     type: ADD_ROUTINE,
     payload: routine
+  }
+}
+
+export function addExercise(exercise) {
+  return {
+    type: ADD_EXERCISE,
+    payload: exercise
   }
 }
 

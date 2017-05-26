@@ -26,8 +26,8 @@ class CreateExercise extends Component {
   validateExercise() {
     let errors = [];
 
-    if (this.state.duration === "" || !this.state.duration) {
-      errors.push("Exercise must have a duration.");
+    if (this.state.exerciseName === "" || !this.state.exerciseName) {
+      errors.push("Exercise must have a name.");
     }
 
     if (errors.length > 0) {
@@ -41,9 +41,15 @@ class CreateExercise extends Component {
   addExercise() {
     const isValid = this.validateExercise();
     if (isValid) {
-      const newExercise = Object.assign({}, exercise, { duration });
+      const exercise = {
+        name: this.state.exerciseName,
+        type: this.state.selectedType,
+        isOneSided: this.state.isOneSided,
+        duration: 45,
+        default: false
+      };
       this.props.toggleVisibility();
-      this.props.CreateExercise(newExercise);
+      this.props.addExercise(exercise);
     }
   }
 
@@ -57,7 +63,7 @@ class CreateExercise extends Component {
         onRequestClose={()=>{}}
       >
         <Header headerText="Fitness Routine Timer" />
-        <Subheader headerText="Add exercise" />
+        <Subheader headerText="Create new exercise" />
         <View style={styles.modalContent}>
           <Input
             defaultValue=""
@@ -73,11 +79,13 @@ class CreateExercise extends Component {
                 <Picker.Item label="stretch" value="stretch" />
                 <Picker.Item label="exercise" value="exercise" />
           </Picker>
-          <Text>Is one-sided?</Text>
-          <Switch
-            onValueChange={(value) => this.setState({isOneSided: value})}
-            value={this.state.isOneSided}
-          />
+          <View style={styles.switchContainer}>
+            <Text style={styles.switchText}>Is one-sided?</Text>
+            <Switch
+              onValueChange={(value) => this.setState({isOneSided: value})}
+              value={this.state.isOneSided}
+              />
+          </View>
           <Button
             style={styles.button}
             onPress={this.addExercise.bind(this)}
@@ -91,19 +99,16 @@ class CreateExercise extends Component {
 }
 
 const styles = {
-  content: {
-    paddingLeft: 15,
-    paddingRight: 15
-  },
-  container: {
-    flex: 1
-  },
-  modalText: {
-    paddingTop: 50
-  },
   modalContent: {
     paddingLeft: 15,
     paddingRight: 15
+  },
+  switchText: {
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  switchContainer: {
+    alignItems: 'center'
   }
 }
 
