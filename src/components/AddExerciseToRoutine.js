@@ -90,6 +90,12 @@ class addExerciseToRoutine extends Component {
             title={"Create new exercise"}
             color="#F26419"
             />
+            <Button
+              style={styles.button}
+              onPress={() => this.props.toggleVisibility()}
+              title={"Cancel"}
+              color="#B4062B"
+            />
           <CreateExercise
             toggleVisibility={() => this.setState({exerciseModalVisible: !this.state.exerciseModalVisible})}
             modalVisible={this.state.exerciseModalVisible}

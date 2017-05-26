@@ -91,6 +91,12 @@ class CreateRoutine extends Component {
             title={"Save Routine"}
             color="#F26419"
             />
+          <Button
+            style={styles.button}
+            onPress={() => this.props.navigator.push({ name: 'Home' })}
+            title={"Cancel"}
+            color="#B4062B"
+          />
         </ScrollView>
       </View>
     );

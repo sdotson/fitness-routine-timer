@@ -92,6 +92,12 @@ class CreateExercise extends Component {
             title={"Create new exercise"}
             color="#F26419"
             />
+            <Button
+              style={styles.button}
+              onPress={() => this.props.toggleVisibility()}
+              title={"Cancel"}
+              color="#B4062B"
+            />
         </View>
       </Modal>
     );
