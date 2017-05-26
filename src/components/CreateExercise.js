@@ -5,22 +5,21 @@ import {
   Button,
   Picker,
   Modal,
-  Alert
+  Alert,
+  Switch
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Header, Subheader, Input } from './common';
-import RoutineList from './RoutineList';
-import CreateExercise from './CreateExercise';
 
-class addExerciseToRoutine extends Component {
+class CreateExercise extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedExerciseName: 'Rest',
-      duration: props.settings.rest,
-      exerciseModalVisible: false
+      exerciseName: null,
+      selectedType: 'rest',
+      isOneSided: false
     };
   }
 
@@ -39,18 +38,12 @@ class addExerciseToRoutine extends Component {
     }
   }
 
-  getExerciseObject(name) {
-    return this.props.exercises.filter((ex) => ex.name === name)[0];
-  }
-
   addExercise() {
     const isValid = this.validateExercise();
     if (isValid) {
-      const duration = parseInt(this.state.duration);
-      const exercise = this.getExerciseObject(this.state.selectedExerciseName);
       const newExercise = Object.assign({}, exercise, { duration });
       this.props.toggleVisibility();
-      this.props.addExerciseToRoutine(newExercise);
+      this.props.CreateExercise(newExercise);
     }
   }
 
@@ -64,36 +57,33 @@ class addExerciseToRoutine extends Component {
         onRequestClose={()=>{}}
       >
         <Header headerText="Fitness Routine Timer" />
-        <Subheader headerText="Add Exercise to Routine" />
+        <Subheader headerText="Add exercise" />
         <View style={styles.modalContent}>
+          <Input
+            defaultValue=""
+            placeholder="Exercise Name"
+            onChangeText={(value) => { this.setState({ exerciseName: value }) }}
+            keyboardType="numeric"
+          />
           <Picker
             style={styles.picker}
-            selectedValue={this.state.selectedExerciseName}
-            onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
-            { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
+            selectedValue={this.state.selectedType}
+            onValueChange={(exercise) => this.setState({selectedType: exercise})}>
+                <Picker.Item label="rest" value="rest" />
+                <Picker.Item label="stretch" value="stretch" />
+                <Picker.Item label="exercise" value="exercise" />
           </Picker>
-          <Input
-            defaultValue={this.props.settings.rest.toString()}
-            placeholder="Duration of exercise"
-            onChangeText={(value) => { this.setState({ duration: value }) }}
-            keyboardType="numeric"
+          <Text>Is one-sided?</Text>
+          <Switch
+            onValueChange={(value) => this.setState({isOneSided: value})}
+            value={this.state.isOneSided}
           />
           <Button
             style={styles.button}
             onPress={this.addExercise.bind(this)}
-            title={"Add exercise to routine"}
-            color="#F26419"
-            />
-          <Button
-            style={styles.button}
-            onPress={() => { this.setState({exerciseModalVisible: true})}}
             title={"Create new exercise"}
             color="#F26419"
             />
-          <CreateExercise
-            toggleVisibility={() => this.setState({exerciseModalVisible: !this.state.exerciseModalVisible})}
-            modalVisible={this.state.exerciseModalVisible}
-          />
         </View>
       </Modal>
     );
@@ -124,4 +114,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(addExerciseToRoutine);
+export default connect(mapStateToProps, actions)(CreateExercise);
