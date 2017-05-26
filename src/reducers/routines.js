@@ -3,8 +3,13 @@ import {
   ADD_ROUTINE
 } from '../actions/types';
 import defaults from '../db/defaults';
+import compareStrings from './helpers';
 
-export default function(state = defaults.routines, action) {
+const sortedRoutines = defaults.routines.sort((a, b) => {
+  return compareStrings(a.name, b.name);
+});
+
+export default function(state = sortedRoutines, action) {
   switch(action.type) {
     case GET_ROUTINES:
       return action.payload.data;

@@ -3,8 +3,13 @@ import {
   ADD_EXERCISE
 } from '../actions/types';
 import defaults from '../db/defaults';
+import compareStrings from './helpers';
 
-export default function(state = defaults.exercises, action) {
+const sortedExercises = defaults.exercises.sort((a, b) => {
+  return compareStrings(a.name, b.name);
+});
+
+export default function(state = sortedExercises, action) {
   switch(action.type) {
     case GET_EXERCISES:
       return action.payload.data;
