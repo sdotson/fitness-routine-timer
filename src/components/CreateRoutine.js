@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Header, Subheader, Input } from './common';
 import RoutineList from './RoutineList';
+import AddExerciseToRoutine from './AddExerciseToRoutine';
 
 class CreateRoutine extends Component {
   constructor(props) {
@@ -51,21 +52,6 @@ class CreateRoutine extends Component {
     }
   }
 
-  validateExercise() {
-    let errors = [];
-    console.log('this.state.duration', this.state.duration);
-    if (this.state.duration === "" || !this.state.duration) {
-      errors.push("Exercise must have a duration.");
-    }
-
-    if (errors.length > 0) {
-      Alert.alert("Error", errors.join("\n"));
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   onSaveRoutine() {
     const valid = this.validateRoutine();
     if (valid) {
@@ -78,27 +64,7 @@ class CreateRoutine extends Component {
     }
   }
 
-  getExerciseObject(name) {
-    return this.props.exercises.filter((ex) => ex.name === name)[0];
-  }
-
-  addExercise() {
-    const isValid = this.validateExercise();
-    if (isValid) {
-      const duration = parseInt(this.state.duration);
-      const exercise = this.getExerciseObject(this.state.selectedExerciseName);
-      const newExercise = Object.assign({}, exercise, { duration });
-
-      this.setState({
-        modalVisible: false
-      });
-
-      this.props.addExerciseToRoutine(newExercise);
-    }
-  }
-
   render() {
-    console.log(this.props.settings);
     return (
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
@@ -114,36 +80,10 @@ class CreateRoutine extends Component {
             title={"Add to routine"}
             color="#F26419"
             />
-          <Modal
-            animationType={"slide"}
-            transparent={false}
-            visible={this.state.modalVisible}
-            style={styles.modal}
-            onRequestClose={()=>{}}
-          >
-            <Header headerText="Fitness Routine Timer" />
-            <Subheader headerText="Add Exercise to Routine" />
-            <View style={styles.modalContent}>
-              <Picker
-                style={styles.picker}
-                selectedValue={this.state.selectedExerciseName}
-                onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
-                { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
-              </Picker>
-              <Input
-                defaultValue={this.props.settings.duration}
-                placeholder="Duration of exercise"
-                onChangeText={(value) => { this.setState({ duration: value }) }}
-                keyboardType="numeric"
-              />
-              <Button
-                style={styles.button}
-                onPress={this.addExercise.bind(this)}
-                title={"Add exercise to routine"}
-                color="#F26419"
-                />
-            </View>
-          </Modal>
+          <AddExerciseToRoutine
+            modalVisible={this.state.modalVisible}
+            toggleVisibility={()=> this.setState({modalVisible: !this.state.modalVisible})}
+          />
           <RoutineList routine={this.props.newRoutine} />
           <Button
             style={styles.button}
