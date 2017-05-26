@@ -130,6 +130,7 @@ class Routine extends Component {
       return (
         <View style={[styles.routineContainer, styles.restingStyle]}>
           <Rest
+            currentExercise={this.state.currentExercise}
             timeRemaining={this.state.timeRemaining}
             currentSide={this.state.currentSide}
             nextStretch={nextExercise}

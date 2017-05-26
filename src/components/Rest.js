@@ -8,7 +8,7 @@ const Rest = (props) => {
   return (
     <View style={viewStyle}>
       <Timer timeRemaining={props.timeRemaining} />
-      <Text style={getReadyStyle}>Resting...</Text>
+      <Text style={getReadyStyle}>{props.currentExercise.name}...</Text>
       <Text style={stretchStyle}>
         {props.nextStretch ? 'Next up is ' + props.nextStretch.name : ''}
       </Text>

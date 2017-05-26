@@ -3,7 +3,6 @@ import { Text, View, TextInput, Platform } from 'react-native';
 
 const Input = (props) => {
   const { inputStyle, labelStyle, containerStyle } = styles;
-  console.log('props', props);
   return (
     <View style={containerStyle}>
       <Text style={labelStyle}>{props.label}</Text>
