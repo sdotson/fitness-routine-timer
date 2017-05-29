@@ -2,26 +2,28 @@ import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 
 const ActionBar = (props) => {
-  if (!props.hidden) {
+  const { pauseCancelContainer, pauseContainer, skipContainer, quitContainer } = styles;
+  const { onPauseClick, onSkipClick, onQuitClick, paused, hidden } = props;
+  if (!hidden) {
     return (
-      <View style={styles.pauseCancelContainer}>
-        <View style={styles.pauseContainer}>
+      <View style={pauseCancelContainer}>
+        <View style={pauseContainer}>
           <Button
-            onPress={props.onPauseClick}
-            title={props.paused ? 'Continue' : 'Pause'}
+            onPress={onPauseClick}
+            title={paused ? 'Continue' : 'Pause'}
             color="#F26419"
             />
         </View>
-        <View style={styles.skipContainer}>
+        <View style={skipContainer}>
           <Button
-            onPress={props.onSkipClick}
+            onPress={onSkipClick}
             title="Skip"
             color="#F26419"
             />
         </View>
-        <View style={styles.quitContainer}>
+        <View style={quitContainer}>
           <Button
-            onPress={props.onQuitClick}
+            onPress={onQuitClick}
             title="Quit"
             color="#F26419"
             />

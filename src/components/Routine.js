@@ -109,7 +109,7 @@ class Routine extends Component {
 
   onQuitClick() {
     clearInterval(this.interval);
-    this.props.navigator.push({ name: "Home" });
+    this.props.navigator.push({ name: "Home" })
   }
 
   startExerciseCycle(index) {
