@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Picker,
   View,
-  Button
+  Button,
+  Text
 } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -46,10 +47,13 @@ class Home extends Component {
             onValueChange={(routine) => this.setState({routine: routine})}>
               { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
           </Picker>
+          <Text>
+            { this.state.routine + " selected"}
+          </Text>
           <Button
             style={styles.button}
             onPress={this.onRoutineSelect.bind(this)}
-            title={"Start " + this.state.routine + ' routine'}
+            title="Start"
             color="#F26419"
           />
         </View>
@@ -61,7 +65,7 @@ class Home extends Component {
                 routineTemplateName: this.state.routine
               }
             })}}
-            title={"Edit " + this.state.routine + ' routine'}
+            title="Edit"
             color="#F26419"
           />
         </View>
@@ -69,7 +73,7 @@ class Home extends Component {
           <Button
             style={styles.button}
             onPress={this.onRoutineDelete.bind(this)}
-            title={"Delete " + this.state.routine + ' routine'}
+            title="Delete"
             color="#F26419"
           />
         </View>
