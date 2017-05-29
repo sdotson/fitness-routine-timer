@@ -19,12 +19,26 @@ class CreateRoutine extends Component {
   constructor(props) {
     super(props);
 
+    let routineName;
+    if (props.routineTemplateName) {
+      routineName = props.routineTemplateName;
+    } else {
+      routineName = null;
+    }
+
     this.state = {
       selectedExerciseName: 'Rest',
-      routineName: null,
+      routineName: routineName,
       duration: null,
       modalVisible: false
     };
+  }
+
+  componentDidMount() {
+    if (this.props.routineTemplateName) {
+        const template = this.props.routines.filter(routine => routine.name === this.props.routineTemplateName)[0];
+        this.props.useRoutineAsTemplate(template.exercises);
+    }
   }
 
   onRoutineNameChange(event) {
@@ -52,16 +66,39 @@ class CreateRoutine extends Component {
     }
   }
 
+  isUnique() {
+    const name = this.state.routineName;
+    const unique = this.props.routines.filter(routine => routine.name === name).length === 0;
+    return unique;
+  }
+
   onSaveRoutine() {
     const valid = this.validateRoutine();
+    const unique = this.isUnique();
     if (valid) {
-      this.props.addRoutine({
-        name: this.state.routineName,
-        default: false,
-        exercises: this.props.newRoutine
-      });
-      this.props.navigator.push({ name: 'Home' });
+      if (unique) {
+        this.addRoutine();
+      } else {
+        Alert.alert(
+          'Confirm',
+          `The routine name "${this.state.routineName}" already exists. Are you sure you want to edit this routine?`,
+          [
+            {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+            {text: 'Yes', onPress: () => this.addRoutine() },
+          ],
+          { cancelable: false }
+        );
+      }
     }
+  }
+
+  addRoutine() {
+    this.props.addRoutine({
+      name: this.state.routineName,
+      default: false,
+      exercises: this.props.newRoutine
+    });
+    this.props.navigator.push({ name: 'Home' });
   }
 
   render() {
@@ -71,6 +108,7 @@ class CreateRoutine extends Component {
         <Subheader headerText="Create Routine" />
         <ScrollView style={styles.content}>
           <Input
+            defaultValue={this.state.routineName}
             placeholder="Enter routine name here"
             onChangeText={this.onRoutineNameChange.bind(this)}
             />

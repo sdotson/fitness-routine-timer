@@ -14,7 +14,17 @@ export default function(state = sortedRoutines, action) {
     case GET_ROUTINES:
       return action.payload.data;
     case ADD_ROUTINE:
-      return [...state, action.payload];
+      const routineName = action.payload.name;
+      const existingRoutineIndex = state.map(routine => routine.name).indexOf(routineName);
+      if (existingRoutineIndex > -1) {
+          return [
+            ...state.slice(0, existingRoutineIndex),
+            action.payload,
+            ...state.slice(existingRoutineIndex + 1)
+          ];
+      } else {
+        return [...state, action.payload];
+      }
   }
 
   return state;

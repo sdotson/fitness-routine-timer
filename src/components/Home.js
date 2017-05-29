@@ -39,7 +39,19 @@ class Home extends Component {
           <Button
             style={styles.button}
             onPress={this.onRoutineSelect.bind(this)}
-            title={"Select " + this.state.routine + ' routine'}
+            title={"Start " + this.state.routine + ' routine'}
+            color="#F26419"
+          />
+        </View>
+        <View style={styles.createRoutine}>
+          <Button
+            style={styles.button}
+            onPress={() => {this.props.navigator.push({
+              name: 'Create Routine', passProps: {
+                routineTemplateName: this.state.routine
+              }
+            })}}
+            title={"Edit " + this.state.routine + ' routine'}
             color="#F26419"
           />
         </View>
@@ -47,7 +59,7 @@ class Home extends Component {
           <Button
             style={styles.button}
             onPress={() => {this.props.navigator.push({ name: 'Create Routine' })}}
-            title="Or create a new routine"
+            title="Create new routine"
             color="#F26419"
           />
         </View>
@@ -74,7 +86,8 @@ const styles = {
   },
   createRoutine: {
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    marginBottom: 30
   },
   button: {
     backgroundColor: 'red'

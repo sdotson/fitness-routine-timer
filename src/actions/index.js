@@ -1,6 +1,7 @@
 import {
   ADD_EXERCISE_TO_ROUTINE,
   DELETE_EXERCISE_FROM_ROUTINE,
+  USE_ROUTINE_AS_TEMPLATE,
   ADD_ROUTINE,
   UPDATE_SETTINGS,
   ADD_EXERCISE
@@ -17,6 +18,13 @@ export function deleteExerciseFromRoutine(index) {
   return {
     type: DELETE_EXERCISE_FROM_ROUTINE,
     payload: index
+  };
+}
+
+export function useRoutineAsTemplate(routine) {
+  return {
+    type: USE_ROUTINE_AS_TEMPLATE,
+    payload: routine
   };
 }
 
