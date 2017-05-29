@@ -1,6 +1,7 @@
 import {
   GET_ROUTINES,
-  ADD_ROUTINE
+  ADD_ROUTINE,
+  DELETE_ROUTINE
 } from '../actions/types';
 import defaults from '../db/defaults';
 import compareStrings from './helpers';
@@ -25,6 +26,13 @@ export default function(state = sortedRoutines, action) {
       } else {
         return [...state, action.payload];
       }
+    case DELETE_ROUTINE:
+      const name = action.payload;
+      const index = state.map(routine => routine.name).indexOf(name);
+      return [
+        ...state.slice(0, index),
+        ...state.slice(index + 1)
+      ];
   }
 
   return state;

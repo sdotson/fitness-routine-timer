@@ -5,6 +5,7 @@ import {
   Button
 } from 'react-native';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 import { Header } from './common';
 
 class Home extends Component {
@@ -24,8 +25,17 @@ class Home extends Component {
     })
   }
 
+  onRoutineDelete() {
+    this.props.deleteRoutine(this.state.routine);
+  }
+
   render() {
-    console.log('routines', this.props.routines);
+    const routineIndex = this.props.routines.map(routine => routine.name).indexOf(this.state.routine);
+    if (routineIndex === -1) {
+      this.setState({
+        routine: this.props.routines[0].name
+      });
+    }
     return (
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
@@ -52,6 +62,14 @@ class Home extends Component {
               }
             })}}
             title={"Edit " + this.state.routine + ' routine'}
+            color="#F26419"
+          />
+        </View>
+        <View style={styles.createRoutine}>
+          <Button
+            style={styles.button}
+            onPress={this.onRoutineDelete.bind(this)}
+            title={"Delete " + this.state.routine + ' routine'}
             color="#F26419"
           />
         </View>
@@ -100,4 +118,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, actions)(Home);

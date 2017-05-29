@@ -3,6 +3,7 @@ import {
   DELETE_EXERCISE_FROM_ROUTINE,
   USE_ROUTINE_AS_TEMPLATE,
   ADD_ROUTINE,
+  DELETE_ROUTINE,
   UPDATE_SETTINGS,
   ADD_EXERCISE
 } from './types';
@@ -35,12 +36,20 @@ export function addRoutine(routine) {
   }
 }
 
+export function deleteRoutine(routine) {
+  return {
+    type: DELETE_ROUTINE,
+    payload: routine
+  }
+}
+
 export function addExercise(exercise) {
   return {
     type: ADD_EXERCISE,
     payload: exercise
   }
 }
+
 
 export function updateSettings(settings) {
   return {
