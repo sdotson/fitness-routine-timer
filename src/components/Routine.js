@@ -9,6 +9,7 @@ import { Header, Subheader } from './common';
 import Exercise from './Exercise';
 import Rest from './Rest';
 import Finished from './Finished';
+import ActionBar from './ActionBar';
 
 class Routine extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class Routine extends Component {
       exercising: false,
       timeRemaining: 2,
       currentExerciseNumber: null,
-      routineFinished: false
+      routineFinished: false,
+      paused: false
     };
   }
 
@@ -38,7 +40,14 @@ class Routine extends Component {
 
   startExercise(index) {
     this.setState((prevState, props) => {
-      const timeRemaining = prevState.currentSide === 'switch to right side' ? 10 : prevState.exerciseList[index].duration;
+      let timeRemaining;
+
+      if (prevState.paused) {
+        timeRemaining = this.state.timeRemaining;
+      } else {
+        timeRemaining = prevState.currentSide === 'switch to right side' ? 10 : prevState.exerciseList[index].duration;
+      }
+
       return {
         exercising: true,
         timeRemaining
@@ -72,6 +81,37 @@ class Routine extends Component {
     return res;
   }
 
+  onPauseClick() {
+    if (this.state.paused) {
+      this.startExercise(this.state.currentExerciseNumber);
+      this.setState({ paused: false });
+    } else {
+      clearInterval(this.interval);
+      this.setState({ paused: true });
+    }
+  }
+
+  onSkipClick() {
+    if (this.state.currentExerciseNumber < this.state.exerciseList.length - 1) {
+      let index = this.state.currentExerciseNumber;
+      let nextIndex = this.state.currentExerciseNumber + 1;
+      clearInterval(this.interval);
+      if (this.state.currentSide === 'left' || this.state.currentSide === 'switch to right side') {
+        this.startExerciseCycle(index);
+      } else {
+        this.startExerciseCycle(nextIndex);
+      }
+    } else {
+      clearInterval(this.interval);
+      this.setState({ routineFinished: true });
+    }
+  }
+
+  onQuitClick() {
+    clearInterval(this.interval);
+    this.props.navigator.push({ name: "Home" });
+  }
+
   startExerciseCycle(index) {
     this.setState((prevState) => {
       let nextSide;
@@ -83,7 +123,6 @@ class Routine extends Component {
         } else {
           nextSide = 'right';
         }
-        // nextSide = prevState.currentSide ? 'right' : 'left';
       } else {
         nextSide = null;
       }
@@ -156,6 +195,13 @@ class Routine extends Component {
         <Header headerText="Fitness Routine Timer" />
         <Subheader headerText={ this.props.routine + ' routine' } />
         {this.renderExercise()}
+        <ActionBar
+          paused={this.state.paused}
+          hidden={!this.state.exercising || this.state.routineFinished}
+          onPauseClick={this.onPauseClick.bind(this)}
+          onSkipClick={this.onSkipClick.bind(this)}
+          onQuitClick={this.onQuitClick.bind(this)}
+        />
       </View>
     );
   }
