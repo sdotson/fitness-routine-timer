@@ -26,6 +26,7 @@ class RoutineList extends Component {
           { this.props.routine.length === 0 ? 'Click button above to add exercises, stretches, and rests to this routine.' : ''}
         </Text>
         {this.props.routine.map((exercise, index) => {
+          const exercisePlus = { ...exercise, index };
           return (
             <View key={index} style={styles.routineItem}>
               <Text style={styles.routineItemName}>
@@ -35,11 +36,6 @@ class RoutineList extends Component {
                 {formatSeconds(exercise.duration)}
               </Text>
               <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.editIcon}>
-                  <Text>
-                    E
-                  </Text>
-                </TouchableOpacity>
                 <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.closeIcon}>
                   <Text>
                     X

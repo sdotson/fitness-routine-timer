@@ -7,6 +7,7 @@ export const DELETE_ROUTINE = 'delete_routine';
 export const ADD_EXERCISE = 'add_exercise';
 export const SELECT_EXERCISE = 'select_exercise';
 export const UPDATE_EXERCISE = 'update_exercise';
+export const START_UPDATE_EXERCISE = 'start_update_exercise';
 
 export const TOGGLE_ADD_EXERCISE_MODAL = 'toggle_add_exercise_modal';
 export const TOGGLE_ADD_NEW_EXERCISE_MODAL = 'toggle_add_new_exercise_modal';

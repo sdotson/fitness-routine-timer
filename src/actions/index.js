@@ -6,6 +6,8 @@ import {
   DELETE_ROUTINE,
   UPDATE_SETTINGS,
   ADD_EXERCISE,
+  UPDATE_EXERCISE,
+  START_UPDATE_EXERCISE,
   TOGGLE_ADD_EXERCISE_MODAL,
   TOGGLE_ADD_NEW_EXERCISE_MODAL
 } from './types';
@@ -52,6 +54,20 @@ export function addExercise(exercise) {
   }
 }
 
+export function updateExercise(exercise) {
+  return {
+    type: UPDATE_EXERCISE,
+    payload: exercise
+  }
+}
+
+export function startUpdateExercise(exercise) {
+  console.log('startUpdateExercise', exercise);
+  return {
+    type: START_UPDATE_EXERCISE,
+    payload: exercise
+  }
+}
 
 export function updateSettings(settings) {
   return {
