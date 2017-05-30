@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 const ActionBar = (props) => {
-  const { pauseCancelContainer, pauseContainer, skipContainer, quitContainer } = styles;
+  const { pauseCancelContainer, buttonContainer, buttonText } = styles;
   const { onPauseClick, onSkipClick, onQuitClick, paused, hidden } = props;
   if (!hidden) {
     return (
       <View style={pauseCancelContainer}>
-        <View style={pauseContainer}>
-          <Button
+        <View style={buttonContainer}>
+          <TouchableOpacity
             onPress={onPauseClick}
-            title={paused ? 'Continue' : 'Pause'}
             color="#F26419"
-            />
+            >
+            <Text style={buttonText}>{paused ? 'Continue' : 'Pause'}</Text>
+          </TouchableOpacity>
         </View>
-        <View style={skipContainer}>
-          <Button
+        <View style={buttonContainer}>
+          <TouchableOpacity
             onPress={onSkipClick}
-            title="Skip"
             color="#F26419"
-            />
+            >
+            <Text style={buttonText}>
+              Skip
+            </Text>
+          </TouchableOpacity>
         </View>
-        <View style={quitContainer}>
-          <Button
+        <View style={buttonContainer}>
+          <TouchableOpacity
             onPress={onQuitClick}
-            title="Quit"
             color="#F26419"
-            />
+            >
+            <Text style={buttonText}>
+              Quit
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -45,20 +52,30 @@ const styles = {
     backgroundColor: '#4d4d4d',
     flexDirection: 'row'
   },
-  pauseContainer: {
+  buttonContainer: {
     flex: 1,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   skipContainer: {
     flex: 1,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   quitContainer: {
     flex: 1,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#FFF'
   }
 };
 

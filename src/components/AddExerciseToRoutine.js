@@ -53,7 +53,6 @@ class addExerciseToRoutine extends Component {
   }
 
   render() {
-    console.log('add exercise modal visible:', this.props.addExerciseModal);
     return (
       <Modal
         animationType={"slide"}
