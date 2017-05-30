@@ -34,11 +34,18 @@ class RoutineList extends Component {
               <Text style={styles.routineItemDuration}>
                 {formatSeconds(exercise.duration)}
               </Text>
-              <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.closeIcon}>
-                <Text>
-                  X
-                </Text>
-              </TouchableOpacity>
+              <View style={styles.iconContainer}>
+                <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.editIcon}>
+                  <Text>
+                    E
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.closeIcon}>
+                  <Text>
+                    X
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           );
         })}
@@ -65,10 +72,16 @@ const styles = {
     color: '#777',
     fontSize: 12
   },
-  closeIcon: {
+  iconContainer: {
     position: 'absolute',
     right: 5,
     top: 5
+  },
+  closeIcon: {
+
+  },
+  editIcon: {
+
   }
 }
 

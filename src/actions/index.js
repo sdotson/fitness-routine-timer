@@ -5,7 +5,9 @@ import {
   ADD_ROUTINE,
   DELETE_ROUTINE,
   UPDATE_SETTINGS,
-  ADD_EXERCISE
+  ADD_EXERCISE,
+  TOGGLE_ADD_EXERCISE_MODAL,
+  TOGGLE_ADD_NEW_EXERCISE_MODAL
 } from './types';
 
 export function addExerciseToRoutine(exercise) {
@@ -55,5 +57,19 @@ export function updateSettings(settings) {
   return {
     type: UPDATE_SETTINGS,
     payload: settings
+  }
+}
+
+export function toggleAddExerciseModal() {
+  console.log('toggleAddExerciseModal() triggered');
+  return {
+    type: TOGGLE_ADD_EXERCISE_MODAL
+  }
+}
+
+export function toggleAddNewExerciseModal() {
+  console.log('toggleAddNewExerciseModal() triggered');
+  return {
+    type: TOGGLE_ADD_NEW_EXERCISE_MODAL
   }
 }

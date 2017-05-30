@@ -47,7 +47,7 @@ class Home extends Component {
             onValueChange={(routine) => this.setState({routine: routine})}>
               { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
           </Picker>
-          <Text>
+          <Text style={styles.centeredText}>
             { this.state.routine + " selected"}
           </Text>
           <Button
@@ -113,6 +113,9 @@ const styles = {
   },
   button: {
     backgroundColor: 'red'
+  },
+  centeredText: {
+    textAlign: 'center'
   }
 }
 

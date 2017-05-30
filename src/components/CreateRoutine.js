@@ -29,8 +29,7 @@ class CreateRoutine extends Component {
     this.state = {
       selectedExerciseName: 'Rest',
       routineName: routineName,
-      duration: null,
-      modalVisible: false
+      duration: null
     };
   }
 
@@ -114,15 +113,14 @@ class CreateRoutine extends Component {
             />
           <Button
             style={styles.button}
-            onPress={() => { this.setState({modalVisible: true})}}
+            onPress={this.props.toggleAddExerciseModal.bind(this)}
             title={"Add to routine"}
             color="#F26419"
             />
-          <AddExerciseToRoutine
-            modalVisible={this.state.modalVisible}
-            toggleVisibility={()=> this.setState({modalVisible: !this.state.modalVisible})}
+          <AddExerciseToRoutine />
+          <RoutineList
+            routine={this.props.newRoutine}
           />
-          <RoutineList routine={this.props.newRoutine} />
           <Button
             style={styles.button}
             onPress={this.onSaveRoutine.bind(this)}

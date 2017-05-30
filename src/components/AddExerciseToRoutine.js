@@ -19,8 +19,7 @@ class addExerciseToRoutine extends Component {
 
     this.state = {
       selectedExerciseName: 'Rest',
-      duration: props.settings.rest,
-      exerciseModalVisible: false
+      duration: props.settings.rest
     };
   }
 
@@ -49,17 +48,17 @@ class addExerciseToRoutine extends Component {
       const duration = parseInt(this.state.duration);
       const exercise = this.getExerciseObject(this.state.selectedExerciseName);
       const newExercise = Object.assign({}, exercise, { duration });
-      this.props.toggleVisibility();
       this.props.addExerciseToRoutine(newExercise);
     }
   }
 
   render() {
+    console.log('add exercise modal visible:', this.props.addExerciseModal);
     return (
       <Modal
         animationType={"slide"}
         transparent={false}
-        visible={this.props.modalVisible}
+        visible={this.props.addExerciseModal || false}
         style={styles.modal}
         onRequestClose={()=>{}}
       >
@@ -86,20 +85,17 @@ class addExerciseToRoutine extends Component {
             />
           <Button
             style={styles.button}
-            onPress={() => { this.setState({exerciseModalVisible: true})}}
+            onPress={() => this.props.toggleAddNewExerciseModal()}
             title={"Create new exercise"}
             color="#F26419"
             />
             <Button
               style={styles.button}
-              onPress={() => this.props.toggleVisibility()}
+              onPress={() => this.props.toggleAddExerciseModal()}
               title={"Cancel"}
               color="#B4062B"
             />
-          <CreateExercise
-            toggleVisibility={() => this.setState({exerciseModalVisible: !this.state.exerciseModalVisible})}
-            modalVisible={this.state.exerciseModalVisible}
-          />
+          <CreateExercise />
         </View>
       </Modal>
     );
@@ -124,9 +120,11 @@ const styles = {
 }
 
 function mapStateToProps(state) {
+  console.log('AddExercise mapState', state);
   return {
     exercises: state.exercises,
-    settings: state.settings
+    settings: state.settings,
+    addExerciseModal: state.addExerciseModal
   };
 }
 

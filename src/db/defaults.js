@@ -5,7 +5,7 @@ const defaultValues = {
     duration: 45
   },
   routines: [{
-    name: "regular",
+    name: "Example",
     default: true,
     exercises: [
         {
@@ -40,7 +40,7 @@ const defaultValues = {
         }
       ]
     }, {
-      name: "Stuart",
+      name: "Standard",
       default: true,
       exercises: [
         {

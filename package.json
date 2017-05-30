@@ -11,7 +11,6 @@
     "react-native": "0.43.4",
     "react-native-simple-store": "^1.2.0",
     "react-redux": "^5.0.4",
-    "realm": "^1.2.0",
     "redux": "^3.6.0",
     "redux-persist": "^4.8.0",
     "redux-promise": "^0.5.3"

@@ -48,7 +48,6 @@ class CreateExercise extends Component {
         duration: 45,
         default: false
       };
-      this.props.toggleVisibility();
       this.props.addExercise(exercise);
     }
   }
@@ -58,7 +57,7 @@ class CreateExercise extends Component {
       <Modal
         animationType={"slide"}
         transparent={false}
-        visible={this.props.modalVisible}
+        visible={this.props.addNewExerciseModal || false}
         style={styles.modal}
         onRequestClose={()=>{}}
       >
@@ -94,7 +93,7 @@ class CreateExercise extends Component {
             />
             <Button
               style={styles.button}
-              onPress={() => this.props.toggleVisibility()}
+              onPress={this.props.toggleAddNewExerciseModal.bind(this)}
               title={"Cancel"}
               color="#B4062B"
             />
@@ -121,7 +120,8 @@ const styles = {
 function mapStateToProps(state) {
   return {
     exercises: state.exercises,
-    settings: state.settings
+    settings: state.settings,
+    addNewExerciseModal: state.addNewExerciseModal
   };
 }
 
