@@ -5,6 +5,7 @@ import {
   Button
 } from 'react-native';
 import { connect } from 'react-redux';
+import KeepAwake from 'react-native-keep-awake';
 import { Header, Subheader } from './common';
 import Exercise from './Exercise';
 import Rest from './Rest';
@@ -195,6 +196,7 @@ class Routine extends Component {
         <Header headerText="Fitness Routine Timer" />
         <Subheader headerText={ this.props.routine + ' routine' } />
         {this.renderExercise()}
+        <KeepAwake />
         <ActionBar
           paused={this.state.paused}
           hidden={!this.state.exercising || this.state.routineFinished}

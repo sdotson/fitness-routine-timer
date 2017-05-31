@@ -1,6 +1,7 @@
 package com.fitnessroutinetimer;
 
 import com.facebook.react.ReactActivity;
+import com.gijoehosaphat.keepscreenon.KeepScreenOnPackage;
 
 public class MainActivity extends ReactActivity {
 

@@ -4,7 +4,6 @@ React Native App that provides a timer for your exercise routine. Now fully func
 - Add ability to edit specific exercises within a routine
 - Add nifty icons for delete and edit
 - Add ads
-- make sure the phone doesn't shut off
 
 Style issues:
 - change orange buttons on home screen to any other color
