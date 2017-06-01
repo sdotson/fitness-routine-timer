@@ -37,7 +37,6 @@ class Routine extends Component {
       currentExercise: routine.exercises[0],
       currentExerciseNumber: 0
     });
-
   }
 
   startExercise(index) {
@@ -240,9 +239,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#eee'
-  },
-  timeRemaining: {
-
   },
   restingStyle: {
 
