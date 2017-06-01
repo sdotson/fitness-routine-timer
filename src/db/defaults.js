@@ -1,8 +1,8 @@
 const defaultValues = {
   settings: {
-    rest: 10,
+    rest: 1,
     restBetween: 5,
-    duration: 45
+    duration: 2
   },
   routines: [{
     name: "Example",
@@ -11,26 +11,26 @@ const defaultValues = {
         {
           name: "Hamstring",
           isOneSided: true,
-          duration: 45,
+          duration: 2,
           type: 'stretch'
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 10
+          duration: 1
         },
         {
           name: "Butterfly",
           isOneSided: false,
-          duration: 45,
+          duration: 2,
           type: 'stretch'
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 10
+          duration: 1
         },
         {
           name: "Splits",
@@ -48,32 +48,32 @@ const defaultValues = {
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 45
+          duration: 2
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 5
+          duration: 1
         },
         {
           name: "Butterfly",
           isOneSided: false,
-          duration: 30,
+          duration: 1,
           type: 'stretch'
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 7
+          duration: 2
         },
         {
           name: "Cobra Abdominal stretch",
           isOneSided: false,
           default: true,
           type: 'stretch',
-          duration: 45
+          duration: 2
         },
         {
           name: "Rest",
@@ -86,58 +86,58 @@ const defaultValues = {
           isOneSided: false,
           default: true,
           type: 'stretch',
-          duration: 30
+          duration: 1
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 5
+          duration: 2
         },
         {
           name: "Lunge Quad",
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 45
+          duration: 2
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 10
+          duration: 2
         },
         {
           name: "Lunge Quad (holding foot)",
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 30
+          duration: 2
         },
         {
           name: "Pigeon",
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 45
+          duration: 2
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 10
+          duration: 1
         },
         {
           name: "Splits",
           isOneSided: false,
-          duration: 90,
+          duration: 1,
           type: 'stretch'
         },
         {
           name: "Meditate",
           isOneSided: false,
           type: 'rest',
-          duration: 300
+          duration: 1
         }
       ]
     }],

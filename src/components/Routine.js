@@ -44,14 +44,22 @@ class Routine extends Component {
       let timeRemaining;
 
       if (prevState.paused) {
-        timeRemaining = this.state.timeRemaining;
+        timeRemaining = prevState.timeRemaining;
       } else {
         timeRemaining = prevState.currentSide === 'switch to right side' ? 10 : prevState.exerciseList[index].duration;
       }
 
+      let nextSide;
+      if (prevState.currentExercise.isOneSided) {
+        if (!prevState.currentSide) {
+          nextSide = 'left';
+        }
+      }
+
       return {
         exercising: true,
-        timeRemaining
+        timeRemaining,
+        currentSide: prevState.currentSide || nextSide
       };
     });
 
@@ -121,19 +129,31 @@ class Routine extends Component {
           nextSide = 'left';
         } else if (prevState.currentSide === 'left') {
           nextSide = 'switch to right side';
-        } else {
+        } else if (prevState.currentSide === 'switch to right side') {
           nextSide = 'right';
+        } else {
+          nextSide = null;
         }
       } else {
         nextSide = null;
       }
+
+      let timeRemaining;
+
+      if (prevState.paused) {
+        timeRemaining = prevState.timeRemaining;
+      } else {
+        timeRemaining = prevState.currentSide === 'switch to right side' ? 10 : prevState.exerciseList[index].duration;
+      }
+
       return {
+        exercising: true,
+        timeRemaining,
         currentExercise: prevState.exerciseList[index],
         currentExerciseNumber: index,
         currentSide: nextSide
       };
     });
-
     return this.startExercise(index);
   }
 

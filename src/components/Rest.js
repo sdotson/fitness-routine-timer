@@ -5,6 +5,7 @@ import Timer from './Timer';
 
 const Rest = (props) => {
   const { viewStyle, getReadyStyle, stretchStyle, sideStyle } = styles;
+  const nextSide = props.currentSide ? props.currentSide : 'left';
   return (
     <View style={viewStyle}>
       <Timer timeRemaining={props.timeRemaining} />
@@ -13,7 +14,7 @@ const Rest = (props) => {
         {props.nextStretch ? 'Next up is ' + props.nextStretch.name : ''}
       </Text>
       <Text style={sideStyle}>
-        {props.nextStretch && props.nextStretch.isOneSided ? `(${props.currentSide} side)` : ''}
+        {props.nextStretch && props.nextStretch.isOneSided ? `(${nextSide} side)` : ''}
       </Text>
     </View>
   );
