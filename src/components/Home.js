@@ -28,15 +28,15 @@ class Home extends Component {
 
   onRoutineDelete() {
     this.props.deleteRoutine(this.state.routine);
-  }
-
-  render() {
     const routineIndex = this.props.routines.map(routine => routine.name).indexOf(this.state.routine);
     if (routineIndex === -1) {
       this.setState({
         routine: this.props.routines[0].name
       });
     }
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />

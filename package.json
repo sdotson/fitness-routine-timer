@@ -9,9 +9,11 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
+    "react-native-elements": "^0.12.2",
     "react-native-keep-awake": "^2.0.4",
     "react-native-keep-screen-on": "^1.1.0",
     "react-native-simple-store": "^1.2.0",
+    "react-native-vector-icons": "^4.2.0",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-persist": "^4.8.0",

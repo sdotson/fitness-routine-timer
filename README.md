@@ -11,3 +11,4 @@ Style issues:
 - margin between buttons on Add Exercise to RoutineList
 - margin after start routine buttons
 - add sound to mark start/stop of timers
+- make home screen buttons cool little icons
