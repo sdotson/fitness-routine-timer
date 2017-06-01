@@ -11,4 +11,3 @@ Style issues:
 - margin between buttons on Add Exercise to RoutineList
 - margin after start routine buttons
 - add vibration and sound to mark start/stop of timers
-- create app icon
