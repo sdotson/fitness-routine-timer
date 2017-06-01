@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Button
+  Button,
+  Vibration
 } from 'react-native';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
@@ -40,6 +41,7 @@ class Routine extends Component {
   }
 
   startExercise(index) {
+    Vibration.vibrate();
     this.setState((prevState, props) => {
       let timeRemaining;
 
