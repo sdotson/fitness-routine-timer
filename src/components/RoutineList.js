@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -16,9 +17,16 @@ function formatSeconds(seconds) {
 }
 
 class RoutineList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.deleteExercise = this.deleteExercise.bind(this);
+  }
+
   deleteExercise(index) {
     this.props.deleteExerciseFromRoutine(index);
   }
+
   render() {
     return (
       <View style={styles.routineList}>
@@ -36,11 +44,13 @@ class RoutineList extends Component {
                 {formatSeconds(exercise.duration)}
               </Text>
               <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={this.deleteExercise.bind(this, index)} style={styles.closeIcon}>
-                  <Text>
-                    X
-                  </Text>
-                </TouchableOpacity>
+                <Icon
+                  size={35}
+                  color="#888"
+                  name='delete'
+                  onPress={() => this.deleteExercise(index)}
+                  style={styles.closeIcon}
+                />
               </View>
             </View>
           );
