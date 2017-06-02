@@ -113,7 +113,7 @@ class Home extends Component {
           <Button
             icon={{ name: 'build' }}
             title='Create New Routine'
-            backgroundColor="#888"
+            backgroundColor="#11A075"
             onPress={this.createRoutine}
           />
         </View>

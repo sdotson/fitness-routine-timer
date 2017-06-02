@@ -3,15 +3,15 @@ import {
   Text,
   ScrollView,
   View,
-  Button,
   Picker,
   Switch,
   Modal,
   Alert
 } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { Header, Subheader, Input } from './common';
+import { Header, Subheader } from './common';
 import RoutineList from './RoutineList';
 import AddExerciseToRoutine from './AddExerciseToRoutine';
 
@@ -31,6 +31,10 @@ class CreateRoutine extends Component {
       routineName: routineName,
       duration: null
     };
+
+    this.onRoutineNameChange = this.onRoutineNameChange.bind(this);
+    this.props.toggleAddExerciseModal = this.props.toggleAddExerciseModal.bind(this);
+    this.onSaveRoutine = this.onSaveRoutine.bind(this);
   }
 
   componentDidMount() {
@@ -106,32 +110,34 @@ class CreateRoutine extends Component {
         <Header headerText="Fitness Routine Timer" />
         <Subheader headerText="Create Routine" />
         <ScrollView style={styles.content}>
-          <Input
-            defaultValue={this.state.routineName}
-            placeholder="Enter routine name here"
-            onChangeText={this.onRoutineNameChange.bind(this)}
-            />
+          <FormLabel>Routine Name</FormLabel>
+          <FormInput
+            onChangeText={this.onRoutineNameChange}
+            placeholder="Please enter a routine name..."
+          />
           <Button
-            style={styles.button}
-            onPress={this.props.toggleAddExerciseModal.bind(this)}
-            title={"Add to routine"}
-            color="#F26419"
-            />
+            style={{ marginTop: 15 }}
+            icon={{ name: 'add' }}
+            title='Add to routine'
+            backgroundColor="#F29C19"
+            onPress={this.props.toggleAddExerciseModal}
+          />
           <AddExerciseToRoutine />
           <RoutineList
             routine={this.props.newRoutine}
           />
           <Button
-            style={styles.button}
-            onPress={this.onSaveRoutine.bind(this)}
-            title={"Save Routine"}
-            color="#F26419"
-            />
+            icon={{ name: 'save' }}
+            title='Save routine'
+            backgroundColor="#11A075"
+            onPress={this.onSaveRoutine}
+            style={{ marginBottom: 15 }}
+          />
           <Button
-            style={styles.button}
+            icon={{ name: 'cancel' }}
+            title='Cancel'
+            backgroundColor="#888"
             onPress={() => this.props.navigator.push({ name: 'Home' })}
-            title={"Cancel"}
-            color="#B4062B"
           />
         </ScrollView>
       </View>
