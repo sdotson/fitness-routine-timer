@@ -112,6 +112,7 @@ class CreateRoutine extends Component {
         <ScrollView style={styles.content}>
           <FormLabel>Routine Name</FormLabel>
           <FormInput
+            defaultValue={this.state.routineName}
             onChangeText={this.onRoutineNameChange}
             placeholder="Please enter a routine name..."
           />
