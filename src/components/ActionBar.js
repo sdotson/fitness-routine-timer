@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-
+import { Icon } from 'react-native-elements';
 const ActionBar = (props) => {
   const { pauseCancelContainer, buttonContainer, buttonText } = styles;
   const { onPauseClick, onSkipClick, onQuitClick, paused, hidden } = props;
@@ -10,29 +10,34 @@ const ActionBar = (props) => {
         <View style={buttonContainer}>
           <TouchableOpacity
             onPress={onPauseClick}
-            color="#F26419"
             >
-            <Text style={buttonText}>{paused ? 'Continue' : 'Pause'}</Text>
+            <Icon
+              size={35}
+              color={paused ? "#11A075" : "#F29C19"}
+              name={paused ? 'play-arrow' : 'pause'}
+            />
           </TouchableOpacity>
         </View>
         <View style={buttonContainer}>
           <TouchableOpacity
             onPress={onSkipClick}
-            color="#F26419"
             >
-            <Text style={buttonText}>
-              Skip
-            </Text>
+            <Icon
+              size={35}
+              color="#F29C19"
+              name="skip-next"
+            />
           </TouchableOpacity>
         </View>
         <View style={buttonContainer}>
           <TouchableOpacity
             onPress={onQuitClick}
-            color="#F26419"
             >
-            <Text style={buttonText}>
-              Quit
-            </Text>
+            <Icon
+              size={35}
+              color="#E01742"
+              name="stop"
+            />
           </TouchableOpacity>
         </View>
       </View>

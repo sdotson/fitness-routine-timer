@@ -238,7 +238,9 @@ const styles = {
     flex: 0.75,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
+    paddingLeft: 15,
+    paddingRight: 15
   },
   restingStyle: {
 
