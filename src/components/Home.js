@@ -94,7 +94,7 @@ class Home extends Component {
           style={styles.picker}
           selectedValue={this.state.routine}
           onValueChange={(routine) => this.setState({routine: routine})}>
-            <Picker.item label="Select a routine..." value="" />
+            <Picker.Item label="Select a routine..." value="" />
             { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
         </Picker>
       );
