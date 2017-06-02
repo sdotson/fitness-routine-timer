@@ -60,7 +60,6 @@ class addExerciseToRoutine extends Component {
           <FormLabel>Duration (in seconds)</FormLabel>
           <FormInput
             defaultValue={this.props.settings.rest.toString()}
-            onChangeText={this.onRoutineNameChange}
             placeholder="Please enter task duration..."
             onChangeText={(value) => { this.setState({ duration: value }) }}
             keyboardType="numeric"

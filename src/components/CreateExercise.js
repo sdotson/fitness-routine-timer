@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Button,
   Picker,
   Modal,
   Alert,
   Switch
 } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Header, Subheader, Input } from './common';
@@ -18,16 +18,19 @@ class CreateExercise extends Component {
 
     this.state = {
       exerciseName: null,
-      selectedType: 'rest',
+      selectedType: '',
       isOneSided: false
     };
+
+    this.addExercise = this.addExercise.bind(this);
+    this.onTypeChange = this.onTypeChange.bind(this);
   }
 
   validateExercise() {
     let errors = [];
 
     if (this.state.exerciseName === "" || !this.state.exerciseName) {
-      errors.push("Exercise must have a name.");
+      errors.push("Task must have a name.");
     }
 
     if (errors.length > 0) {
@@ -52,6 +55,41 @@ class CreateExercise extends Component {
     }
   }
 
+  onTypeChange(type) {
+    this.setState({selectedType: type, isOneSided: false});
+  }
+
+  renderSidedness() {
+    if (this.state.selectedType === 'exercise' || this.state.selectedType === 'stretch') {
+      return (
+        <View style={styles.switchContainer}>
+          <Text style={styles.switchText}>Is one-sided?</Text>
+          <Switch
+            onValueChange={(value) => this.setState({isOneSided: value})}
+            value={this.state.isOneSided}
+            />
+        </View>
+      );
+    }
+  }
+
+  renderTaskDetails() {
+    if (this.state.selectedType) {
+      return (
+        <View>
+          { this.renderSidedness() }
+          <Button
+            icon={{ name: 'save' }}
+            title='Save new task'
+            backgroundColor="#11A075"
+            onPress={this.addExercise}
+            style={{ marginBottom: 15, marginTop: 15 }}
+            />
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
       <Modal
@@ -62,41 +100,28 @@ class CreateExercise extends Component {
         onRequestClose={()=>{}}
       >
         <Header headerText="Fitness Routine Timer" />
-        <Subheader headerText="Create new exercise" />
+        <Subheader headerText="Create new task" />
         <View style={styles.modalContent}>
-          <Input
-            defaultValue=""
-            placeholder="Exercise Name"
+          <FormLabel>Task name</FormLabel>
+          <FormInput
+            placeholder="Please enter task name.."
             onChangeText={(value) => { this.setState({ exerciseName: value }) }}
-            keyboardType="numeric"
           />
           <Picker
             style={styles.picker}
             selectedValue={this.state.selectedType}
-            onValueChange={(exercise) => this.setState({selectedType: exercise})}>
+            onValueChange={this.onTypeChange}>
+                <Picker.Item label="Select the task type..." value="" />
                 <Picker.Item label="rest" value="rest" />
                 <Picker.Item label="stretch" value="stretch" />
                 <Picker.Item label="exercise" value="exercise" />
           </Picker>
-          <View style={styles.switchContainer}>
-            <Text style={styles.switchText}>Is one-sided?</Text>
-            <Switch
-              onValueChange={(value) => this.setState({isOneSided: value})}
-              value={this.state.isOneSided}
-              />
-          </View>
+          { this.renderTaskDetails() }
           <Button
-            style={styles.button}
-            onPress={this.addExercise.bind(this)}
-            title={"Create new exercise"}
-            color="#F26419"
-            />
-            <Button
-              style={styles.button}
-              onPress={this.props.toggleAddNewExerciseModal.bind(this)}
-              title={"Cancel"}
-              color="#B4062B"
-            />
+            icon={{ name: 'cancel' }}
+            title='Cancel'
+            onPress={this.props.toggleAddNewExerciseModal}
+          />
         </View>
       </Modal>
     );
