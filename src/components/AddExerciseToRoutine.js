@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Button,
   Picker,
   Modal,
   Alert
 } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Header, Subheader, Input } from './common';
@@ -18,9 +18,10 @@ class addExerciseToRoutine extends Component {
     super(props);
 
     this.state = {
-      selectedExerciseName: 'Rest',
+      selectedExerciseName: '',
       duration: props.settings.rest
     };
+    this.addExercise = this.addExercise.bind(this);
   }
 
   validateExercise() {
@@ -52,6 +53,30 @@ class addExerciseToRoutine extends Component {
     }
   }
 
+  renderTaskDetails() {
+    if (this.state.selectedExerciseName) {
+      return (
+        <View>
+          <FormLabel>Duration (in seconds)</FormLabel>
+          <FormInput
+            defaultValue={this.props.settings.rest.toString()}
+            onChangeText={this.onRoutineNameChange}
+            placeholder="Please enter task duration..."
+            onChangeText={(value) => { this.setState({ duration: value }) }}
+            keyboardType="numeric"
+            />
+          <Button
+            style={{ marginTop: 15, marginBottom: 15 }}
+            icon={{ name: 'add' }}
+            title='Add task to routine'
+            backgroundColor="#F29C19"
+            onPress={this.addExercise}
+          />
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
       <Modal
@@ -62,38 +87,28 @@ class addExerciseToRoutine extends Component {
         onRequestClose={()=>{}}
       >
         <Header headerText="Fitness Routine Timer" />
-        <Subheader headerText="Add Exercise to Routine" />
+        <Subheader headerText="Add task to routine" />
         <View style={styles.modalContent}>
           <Picker
             style={styles.picker}
             selectedValue={this.state.selectedExerciseName}
             onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
+            <Picker.Item label="Select a task to add..." value="" />
             { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
           </Picker>
-          <Input
-            defaultValue={this.props.settings.rest.toString()}
-            placeholder="Duration of exercise"
-            onChangeText={(value) => { this.setState({ duration: value }) }}
-            keyboardType="numeric"
+          { this.renderTaskDetails() }
+          <Button
+            icon={{ name: 'build' }}
+            title='Create new task'
+            backgroundColor="#11A075"
+            onPress={() => this.props.toggleAddNewExerciseModal()}
+            style={{ marginBottom: 15 }}
           />
           <Button
-            style={styles.button}
-            onPress={this.addExercise.bind(this)}
-            title={"Add exercise to routine"}
-            color="#F26419"
-            />
-          <Button
-            style={styles.button}
-            onPress={() => this.props.toggleAddNewExerciseModal()}
-            title={"Create new exercise"}
-            color="#F26419"
-            />
-            <Button
-              style={styles.button}
-              onPress={() => this.props.toggleAddExerciseModal()}
-              title={"Cancel"}
-              color="#B4062B"
-            />
+            icon={{ name: 'cancel' }}
+            title='Cancel'
+            onPress={() => this.props.toggleAddExerciseModal()}
+          />
           <CreateExercise />
         </View>
       </Modal>
