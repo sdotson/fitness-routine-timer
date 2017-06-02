@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import {
   Picker,
   View,
-  Button,
   Text
 } from 'react-native';
+import {
+  Button,
+  ButtonGroup,
+  Icon
+} from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Header } from './common';
@@ -13,11 +17,16 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routine: props.routines[0].name
+      routine: ""
     }
+
+    this.startRoutine = this.startRoutine.bind(this);
+    this.editRoutine = this.editRoutine.bind(this);
+    this.deleteRoutine = this.deleteRoutine.bind(this);
+    this.createRoutine = this.createRoutine.bind(this);
   }
 
-  onRoutineSelect() {
+  startRoutine() {
     this.props.navigator.push({
       name: 'Routine',
       passProps: {
@@ -26,13 +35,69 @@ class Home extends Component {
     })
   }
 
-  onRoutineDelete() {
+  deleteRoutine() {
     this.props.deleteRoutine(this.state.routine);
-    const routineIndex = this.props.routines.map(routine => routine.name).indexOf(this.state.routine);
-    if (routineIndex === -1) {
-      this.setState({
-        routine: this.props.routines[0].name
-      });
+    this.setState({ routine: "" });
+  }
+
+  editRoutine() {
+    this.props.navigator.push({
+      name: 'Create Routine', passProps: {
+        routineTemplateName: this.state.routine
+      }
+    });
+  }
+
+  createRoutine() {
+    this.props.navigator.push({ name: 'Create Routine' });
+  }
+
+  renderButtonGroup() {
+    const start = () => <Text>Start</Text>;
+    const edit = () => <Text>Edit</Text>;
+    const deletee = () => <Text>Delete</Text>;
+    const buttons = [{ element: start }, { element: edit }, { element: deletee }];
+    const { selectedIndex } = this.state;
+    if (this.state.routine) {
+      return (
+        <View style={styles.buttonContainer}>
+          <Icon
+            reverse
+            size={30}
+            color="#F29C19"
+            name='play-arrow'
+            onPress={this.startRoutine}
+          />
+          <Icon
+            reverse
+            size={30}
+            color="#888"
+            name='edit'
+            onPress={this.editRoutine}
+          />
+          <Icon
+            reverse
+            size={30}
+            color="#E01742"
+            name='delete'
+            onPress={this.deleteRoutine}
+          />
+        </View>
+      );
+    }
+  }
+
+  renderPicker() {
+    if (this.props.routines.length > 0) {
+      return (
+        <Picker
+          style={styles.picker}
+          selectedValue={this.state.routine}
+          onValueChange={(routine) => this.setState({routine: routine})}>
+            <Picker.item label="Select a routine..." value="" />
+            { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
+        </Picker>
+      );
     }
   }
 
@@ -41,48 +106,15 @@ class Home extends Component {
       <View style={styles.container}>
         <Header headerText="Fitness Routine Timer" />
         <View style={styles.selectRoutine}>
-          <Picker
-            style={styles.picker}
-            selectedValue={this.state.routine}
-            onValueChange={(routine) => this.setState({routine: routine})}>
-              { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
-          </Picker>
-          <Text style={styles.centeredText}>
-            { this.state.routine + " selected"}
-          </Text>
-          <Button
-            style={styles.button}
-            onPress={this.onRoutineSelect.bind(this)}
-            title="Start"
-            color="#F26419"
-          />
+          { this.renderPicker() }
         </View>
+        { this.renderButtonGroup() }
         <View style={styles.createRoutine}>
           <Button
-            style={styles.button}
-            onPress={() => {this.props.navigator.push({
-              name: 'Create Routine', passProps: {
-                routineTemplateName: this.state.routine
-              }
-            })}}
-            title="Edit"
-            color="#F26419"
-          />
-        </View>
-        <View style={styles.createRoutine}>
-          <Button
-            style={styles.button}
-            onPress={this.onRoutineDelete.bind(this)}
-            title="Delete"
-            color="#F26419"
-          />
-        </View>
-        <View style={styles.createRoutine}>
-          <Button
-            style={styles.button}
-            onPress={() => {this.props.navigator.push({ name: 'Create Routine' })}}
-            title="Create new routine"
-            color="#F26419"
+            icon={{ name: 'build' }}
+            title='Create New Routine'
+            backgroundColor="#888"
+            onPress={this.createRoutine}
           />
         </View>
       </View>
@@ -109,13 +141,15 @@ const styles = {
   createRoutine: {
     paddingLeft: 15,
     paddingRight: 15,
+    marginTop: 30,
     marginBottom: 30
-  },
-  button: {
-    backgroundColor: 'red'
   },
   centeredText: {
     textAlign: 'center'
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: 'center'
   }
 }
 
