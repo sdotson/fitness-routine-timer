@@ -21,6 +21,7 @@ class addExerciseToRoutine extends Component {
       selectedExerciseName: '',
       duration: props.settings.rest
     };
+
     this.addExercise = this.addExercise.bind(this);
   }
 
@@ -56,7 +57,7 @@ class addExerciseToRoutine extends Component {
   renderTaskDetails() {
     if (this.state.selectedExerciseName) {
       return (
-        <View>
+        <View style={styles.buttonWrapper}>
           <FormLabel>Duration (in seconds)</FormLabel>
           <FormInput
             defaultValue={this.props.settings.rest.toString()}
@@ -76,6 +77,21 @@ class addExerciseToRoutine extends Component {
     }
   }
 
+  renderPickerItems() {
+    const firstItem = { name: "Select a task to add...", value: "" };
+    const exerciseItems = this.props.exercises.map((exercise) => {
+      return {
+        name: exercise.name,
+        value: exercise.name
+      }
+    });
+    const pickerItems = [ firstItem, ...exerciseItems ];
+    return pickerItems.map((exercise) => {
+        return (
+          <Picker.Item label={exercise.name} value={exercise.value} key={exercise.name} />
+    )});
+  }
+
   render() {
     return (
       <Modal
@@ -92,17 +108,17 @@ class addExerciseToRoutine extends Component {
             style={styles.picker}
             selectedValue={this.state.selectedExerciseName}
             onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
-            <Picker.Item label="Select a task to add..." value="" />
-            { this.props.exercises.map(exercise => <Picker.Item label={exercise.name} value={exercise.name} key={exercise.name} />) }
+            { this.renderPickerItems() }
           </Picker>
           { this.renderTaskDetails() }
-          <Button
-            icon={{ name: 'build' }}
-            title='Create new task'
-            backgroundColor="#11A075"
-            onPress={() => this.props.toggleAddNewExerciseModal()}
-            style={{ marginBottom: 15 }}
-          />
+          <View style={styles.buttonWrapper}>
+            <Button
+              icon={{ name: 'build' }}
+              title='Create new task'
+              backgroundColor="#11A075"
+              onPress={() => this.props.toggleAddNewExerciseModal()}
+              />
+          </View>
           <Button
             icon={{ name: 'cancel' }}
             title='Cancel'
@@ -129,6 +145,9 @@ const styles = {
   modalContent: {
     paddingLeft: 15,
     paddingRight: 15
+  },
+  buttonWrapper: {
+    marginBottom: 15
   }
 }
 

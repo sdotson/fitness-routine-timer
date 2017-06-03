@@ -127,13 +127,14 @@ class CreateRoutine extends Component {
           <RoutineList
             routine={this.props.newRoutine}
           />
-          <Button
-            icon={{ name: 'save' }}
-            title='Save routine'
-            backgroundColor="#11A075"
-            onPress={this.onSaveRoutine}
-            style={{ marginBottom: 15 }}
-          />
+          <View style={styles.buttonWrapper}>
+            <Button
+              icon={{ name: 'save' }}
+              title='Save routine'
+              backgroundColor="#11A075"
+              onPress={this.onSaveRoutine}
+              />
+          </View>
           <Button
             icon={{ name: 'cancel' }}
             title='Cancel'
@@ -160,6 +161,9 @@ const styles = {
   modalContent: {
     paddingLeft: 15,
     paddingRight: 15
+  },
+  buttonWrapper: {
+    marginBottom: 15
   }
 }
 
