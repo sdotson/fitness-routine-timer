@@ -19,10 +19,12 @@ class addExerciseToRoutine extends Component {
 
     this.state = {
       selectedExerciseName: '',
-      duration: props.settings.rest
+      duration: null,
+      durationDefault: null
     };
 
     this.addExercise = this.addExercise.bind(this);
+    this.onTaskChange = this.onTaskChange.bind(this);
   }
 
   validateExercise() {
@@ -54,13 +56,25 @@ class addExerciseToRoutine extends Component {
     }
   }
 
+  onTaskChange(task) {
+    const currentTask = this.getExerciseObject(task);
+    const { restDefault, taskDefault } = this.props.settings;
+    const newDuration = currentTask.type === 'rest' ? restDefault : taskDefault;
+
+    this.setState({
+      selectedExerciseName: task,
+      durationDefault: newDuration.toString(),
+      duration: newDuration.toString()
+    });
+  }
+
   renderTaskDetails() {
     if (this.state.selectedExerciseName) {
       return (
         <View style={styles.buttonWrapper}>
           <FormLabel>Duration (in seconds)</FormLabel>
           <FormInput
-            defaultValue={this.props.settings.rest.toString()}
+            defaultValue={this.state.durationDefault}
             placeholder="Please enter task duration..."
             onChangeText={(value) => { this.setState({ duration: value }) }}
             keyboardType="numeric"
@@ -107,7 +121,7 @@ class addExerciseToRoutine extends Component {
           <Picker
             style={styles.picker}
             selectedValue={this.state.selectedExerciseName}
-            onValueChange={(exercise) => this.setState({selectedExerciseName: exercise})}>
+            onValueChange={this.onTaskChange}>
             { this.renderPickerItems() }
           </Picker>
           { this.renderTaskDetails() }

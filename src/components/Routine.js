@@ -172,11 +172,13 @@ class Routine extends Component {
     if (!this.state.exercising) {
       return (
         <View style={styles.routineContainer}>
-          <Button
-            onPress={this.startRoutine.bind(this)}
-            title="Start Routine"
-            color="#F26419"
-          />
+          <View style={styles.buttonWrapper}>
+            <Button
+              onPress={this.startRoutine.bind(this)}
+              title="Start Routine"
+              color="#F26419"
+              />
+          </View>
           <Text>
             {
               this.state.exerciseList.map(exercise => exercise.name).join(', ')
@@ -244,6 +246,9 @@ const styles = {
   },
   restingStyle: {
 
+  },
+  buttonWrapper: {
+    marginBottom: 15
   }
 }
 

@@ -1,46 +1,117 @@
 const defaultValues = {
   settings: {
-    rest: 1,
+    restDefault: 10,
     restBetween: 5,
-    duration: 2
+    taskDefault: 45
   },
   routines: [{
-    name: "Example",
+    name: "Ab Blaster",
     default: true,
     exercises: [
         {
-          name: "Hamstring",
-          isOneSided: true,
-          duration: 2,
-          type: 'stretch'
+          name: "Plank",
+          isOneSided: false,
+          duration: 60,
+          type: 'exercise'
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 1
+          duration: 30
         },
         {
-          name: "Butterfly",
+          name: "Crunches",
           isOneSided: false,
-          duration: 2,
-          type: 'stretch'
+          duration: 60,
+          type: 'exercise'
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 1
+          duration: 30
         },
         {
-          name: "Splits",
+          name: "Leg lifts",
           isOneSided: false,
-          duration: 2,
-          type: 'stretch'
+          duration: 60,
+          type: 'exercise'
         }
       ]
     }, {
-      name: "Standard",
+      name: "Insanity",
+      default: true,
+      exercises: [
+          {
+            name: "Plank",
+            isOneSided: false,
+            duration: 60,
+            type: 'exercise'
+          },
+          {
+            name: "Rest",
+            isOneSided: false,
+            type: 'rest',
+            duration: 30
+          },
+          {
+            name: "Crunches",
+            isOneSided: false,
+            duration: 60,
+            type: 'exercise'
+          },
+          {
+            name: "Rest",
+            isOneSided: false,
+            type: 'rest',
+            duration: 30
+          },
+          {
+            name: "Leg lifts",
+            isOneSided: false,
+            duration: 60,
+            type: 'exercise'
+          },
+          {
+            name: "Rest",
+            isOneSided: false,
+            type: 'rest',
+            duration: 30
+          },
+          {
+            name: "Pull ups",
+            isOneSided: false,
+            duration: 60,
+            type: 'exercise'
+          },
+          {
+            name: "Rest",
+            isOneSided: false,
+            type: 'rest',
+            duration: 30
+          },
+          {
+            name: "Squats",
+            isOneSided: false,
+            duration: 60,
+            type: 'exercise'
+          },
+          {
+            name: "Rest",
+            isOneSided: false,
+            type: 'rest',
+            duration: 30
+          },
+          {
+            name: "Pushups",
+            isOneSided: false,
+            duration: 60,
+            type: 'exercise'
+          }
+        ]
+      }, {
+      name: "Stretching",
       default: true,
       exercises: [
         {
@@ -48,96 +119,96 @@ const defaultValues = {
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 2
+          duration: 45
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 1
+          duration: 10
         },
         {
           name: "Butterfly",
           isOneSided: false,
-          duration: 1,
+          duration: 30,
           type: 'stretch'
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 2
+          duration: 10
         },
         {
           name: "Cobra Abdominal stretch",
           isOneSided: false,
           default: true,
           type: 'stretch',
-          duration: 2
+          duration: 45
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 5
+          duration: 10
         },
         {
           name: "Child's pose",
           isOneSided: false,
           default: true,
           type: 'stretch',
-          duration: 1
+          duration: 30
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 2
+          duration: 10
         },
         {
           name: "Lunge Quad",
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 2
+          duration: 45
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 2
+          duration: 10
         },
         {
           name: "Lunge Quad (holding foot)",
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 2
+          duration: 45
         },
         {
           name: "Pigeon",
           isOneSided: true,
           default: true,
           type: 'stretch',
-          duration: 2
+          duration: 45
         },
         {
           name: "Rest",
           isOneSided: false,
           type: 'rest',
-          duration: 1
+          duration: 10
         },
         {
           name: "Splits",
           isOneSided: false,
-          duration: 1,
+          duration: 120,
           type: 'stretch'
         },
         {
           name: "Meditate",
           isOneSided: false,
           type: 'rest',
-          duration: 1
+          duration: 300
         }
       ]
     }],
@@ -146,120 +217,151 @@ const defaultValues = {
         name: "Rest",
         isOneSided: false,
         default: true,
-        type: 'rest',
-        duration: 2
+        type: 'rest'
       },
       {
         name: "Meditate",
         isOneSided: false,
         default: true,
-        type: 'rest',
-        duration: 2
+        type: 'rest'
       },
       {
         name: "Cobra Abdominal stretch",
         isOneSided: false,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Child's pose",
         isOneSided: false,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Seated Hamstring (one-sided)",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Floor hip",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Pigeon",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Standing Quad",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Cat Stretch",
         isOneSided: false,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Lunge Quad",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Lunge Quad (holding foot)",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Seated Hamstring",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Butterfly",
         isOneSided: false,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Splits",
         isOneSided: false,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Wrist Extension",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Wrist Flexion",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
       },
       {
         name: "Thumb",
         isOneSided: true,
         default: true,
-        type: 'stretch',
-        duration: 2
+        type: 'stretch'
+      },
+      {
+        name: "Pushups",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Pull ups",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Chin ups",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Plank",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Squats",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Lunges",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Run",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Jump rope",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
       }
     ]
 }
