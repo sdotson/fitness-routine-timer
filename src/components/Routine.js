@@ -28,6 +28,16 @@ class Routine extends Component {
       paused: false
     };
     this.startRoutine = this.startRoutine.bind(this);
+    this.onAndroidBackButtonPress = this.onAndroidBackButtonPress.bind(this);
+  }
+
+  onAndroidBackButtonPress() {
+    if (this.props.navigator.getCurrentIndex() > 0) {
+      this.props.navigator.pop()
+      return true // do not exit app
+    } else {
+      return false // exit app
+    }
   }
 
   componentDidMount() {
