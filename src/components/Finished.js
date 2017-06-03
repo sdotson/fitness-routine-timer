@@ -12,7 +12,7 @@ class Finished extends Component {
     return (
       <View style={styles.viewStyle}>
         <Text>FINISHED</Text>
-        <Text>The {this.props.routineName} routine has finished.</Text>
+        <Text style={styles.textMargin}>The {this.props.routineName} routine has finished.</Text>
         <Button
           onPress={this.navigateToHome.bind(this)}
           title="Back to Home"
@@ -31,6 +31,9 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  textMargin: {
+    marginBottom: 15
   }
 };
 

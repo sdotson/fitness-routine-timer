@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Button,
   Vibration
 } from 'react-native';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import { Header, Subheader } from './common';
@@ -27,6 +27,7 @@ class Routine extends Component {
       routineFinished: false,
       paused: false
     };
+    this.startRoutine = this.startRoutine.bind(this);
   }
 
   componentDidMount() {
@@ -174,10 +175,11 @@ class Routine extends Component {
         <View style={styles.routineContainer}>
           <View style={styles.buttonWrapper}>
             <Button
-              onPress={this.startRoutine.bind(this)}
-              title="Start Routine"
-              color="#F26419"
-              />
+              icon={{ name: 'play-arrow' }}
+              title='Start routine'
+              backgroundColor="#F29C19"
+              onPress={this.startRoutine}
+            />
           </View>
           <Text>
             {
