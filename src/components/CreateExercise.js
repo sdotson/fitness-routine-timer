@@ -78,13 +78,14 @@ class CreateExercise extends Component {
       return (
         <View>
           { this.renderSidedness() }
-          <Button
-            icon={{ name: 'save' }}
-            title='Save new task'
-            backgroundColor="#11A075"
-            onPress={this.addExercise}
-            style={{ marginBottom: 15, marginTop: 15 }}
-            />
+          <View style={styles.buttonWrapper}>
+            <Button
+              icon={{ name: 'save' }}
+              title='Save new task'
+              backgroundColor="#11A075"
+              onPress={this.addExercise}
+              />
+          </View>
         </View>
       );
     }
@@ -112,9 +113,9 @@ class CreateExercise extends Component {
             selectedValue={this.state.selectedType}
             onValueChange={this.onTypeChange}>
                 <Picker.Item label="Select the task type..." value="" />
-                <Picker.Item label="rest" value="rest" />
-                <Picker.Item label="stretch" value="stretch" />
-                <Picker.Item label="exercise" value="exercise" />
+                <Picker.Item label="Rest" value="rest" />
+                <Picker.Item label="Stretch" value="stretch" />
+                <Picker.Item label="Exercise" value="exercise" />
           </Picker>
           { this.renderTaskDetails() }
           <Button
@@ -139,6 +140,10 @@ const styles = {
   },
   switchContainer: {
     alignItems: 'center'
+  },
+  buttonWrapper: {
+    marginBottom: 15,
+    marginTop: 15
   }
 }
 
