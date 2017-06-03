@@ -53,11 +53,6 @@ class Home extends Component {
   }
 
   renderButtonGroup() {
-    const start = () => <Text>Start</Text>;
-    const edit = () => <Text>Edit</Text>;
-    const deletee = () => <Text>Delete</Text>;
-    const buttons = [{ element: start }, { element: edit }, { element: deletee }];
-    const { selectedIndex } = this.state;
     if (this.state.routine) {
       return (
         <View style={styles.buttonContainer}>
@@ -87,15 +82,30 @@ class Home extends Component {
     }
   }
 
+  renderPickerItems() {
+    const firstItem = { name: "Select a routine...", value: "" };
+    const routineItems = this.props.routines.map((routine) => {
+      return {
+        name: routine.name,
+        value: routine.name
+      }
+    });
+    const pickerItems = [ firstItem, ...routineItems ];
+    return pickerItems.map((routine) => {
+        return (
+          <Picker.Item label={routine.name} value={routine.value} key={routine.name} />
+    )});
+  }
+
   renderPicker() {
     if (this.props.routines.length > 0) {
       return (
         <Picker
           style={styles.picker}
           selectedValue={this.state.routine}
-          onValueChange={(routine) => this.setState({routine: routine})}>
-            <Picker.Item label="Select a routine..." value="" />
-            { this.props.routines.map(routine => <Picker.Item label={routine.name} value={routine.name} key={routine.name} />) }
+          onValueChange={(routine) => this.setState({ routine: routine })}
+        >
+          { this.renderPickerItems() }
         </Picker>
       );
     }
