@@ -154,7 +154,8 @@ const styles = {
   },
   container: {
     flex: 1,
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
+    paddingBottom: 30
   },
   modalText: {
     paddingTop: 50
