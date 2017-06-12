@@ -158,7 +158,8 @@ const styles = {
   },
   modalContent: {
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    backgroundColor: '#eee'
   },
   buttonWrapper: {
     marginBottom: 15

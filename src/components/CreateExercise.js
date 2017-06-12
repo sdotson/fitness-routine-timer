@@ -132,7 +132,8 @@ class CreateExercise extends Component {
 const styles = {
   modalContent: {
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    backgroundColor: '#eee'
   },
   switchText: {
     textAlign: 'center',

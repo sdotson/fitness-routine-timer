@@ -246,7 +246,8 @@ class Routine extends Component {
 
 const styles = {
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#eee'
   },
   routineContainer: {
     flex: 0.75,
