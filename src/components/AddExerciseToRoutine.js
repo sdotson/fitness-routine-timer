@@ -57,7 +57,7 @@ class addExerciseToRoutine extends Component {
   }
 
   onTaskChange(task) {
-    const currentTask = this.getExerciseObject(task);
+    const currentTask = this.getExerciseObject(task) || {};
     const { restDefault, taskDefault } = this.props.settings;
     const newDuration = currentTask.type === 'rest' ? restDefault : taskDefault;
 
