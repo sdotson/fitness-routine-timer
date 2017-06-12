@@ -5,6 +5,7 @@ import {
   Vibration
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import Sound from 'react-native-sound';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import { Header, Subheader } from './common';
@@ -27,6 +28,14 @@ class Routine extends Component {
       routineFinished: false,
       paused: false
     };
+
+    this.ding = new Sound('ding.wav', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+    });
+
     this.startRoutine = this.startRoutine.bind(this);
     this.onAndroidBackButtonPress = this.onAndroidBackButtonPress.bind(this);
   }
@@ -40,6 +49,11 @@ class Routine extends Component {
     }
   }
 
+  beepAndVibrate() {
+    Vibration.vibrate();
+    this.ding.play();
+  }
+
   componentDidMount() {
     const routine = this.props.routines.filter(routine => routine.name === this.props.routine)[0];
     this.setState({
@@ -51,7 +65,7 @@ class Routine extends Component {
   }
 
   startExercise(index) {
-    Vibration.vibrate();
+    this.beepAndVibrate();
     this.setState((prevState, props) => {
       let timeRemaining;
 
@@ -88,7 +102,7 @@ class Routine extends Component {
             }
           } else {
             clearInterval(this.interval);
-            Vibration.vibrate();
+            this.beepAndVibrate();
             this.setState({ routineFinished: true });
             resolve();
           }
@@ -125,6 +139,7 @@ class Routine extends Component {
       }
     } else {
       clearInterval(this.interval);
+      this.beepAndVibrate();
       this.setState({ routineFinished: true });
     }
   }
