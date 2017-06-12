@@ -14,6 +14,7 @@
     "react-native-keep-awake": "^2.0.4",
     "react-native-keep-screen-on": "^1.1.0",
     "react-native-simple-store": "^1.2.0",
+    "react-native-splash-screen": "^2.1.0",
     "react-native-vector-icons": "^4.2.0",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",

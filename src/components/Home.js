@@ -10,6 +10,7 @@ import {
   Icon
 } from 'react-native-elements';
 import { connect } from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 import * as actions from '../actions';
 import { Header } from './common';
 
@@ -24,6 +25,10 @@ class Home extends Component {
     this.editRoutine = this.editRoutine.bind(this);
     this.deleteRoutine = this.deleteRoutine.bind(this);
     this.createRoutine = this.createRoutine.bind(this);
+  }
+
+  componentDidMount() {
+      SplashScreen.hide();
   }
 
   startRoutine() {
