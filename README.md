@@ -8,7 +8,3 @@ React Native App that provides a timer for your exercise routine. Now fully func
 - add progress bar for the routine itself
 - manage all forms through redux
 - add confirm box for deletions
-
-Style issues:
-- add sound to mark start/stop of timers
-- fix home screen spacing

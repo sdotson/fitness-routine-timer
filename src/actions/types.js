@@ -11,5 +11,6 @@ export const START_UPDATE_EXERCISE = 'start_update_exercise';
 
 export const TOGGLE_ADD_EXERCISE_MODAL = 'toggle_add_exercise_modal';
 export const TOGGLE_ADD_NEW_EXERCISE_MODAL = 'toggle_add_new_exercise_modal';
+export const HIDE_ALL_MODALS = 'hide_all_modals';
 
 export const UPDATE_SETTINGS = 'update_settings';

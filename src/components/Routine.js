@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Vibration
+  Vibration,
+  BackAndroid
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import Sound from 'react-native-sound';
@@ -37,16 +38,6 @@ class Routine extends Component {
     });
 
     this.startRoutine = this.startRoutine.bind(this);
-    this.onAndroidBackButtonPress = this.onAndroidBackButtonPress.bind(this);
-  }
-
-  onAndroidBackButtonPress() {
-    if (this.props.navigator.getCurrentIndex() > 0) {
-      this.props.navigator.pop()
-      return true // do not exit app
-    } else {
-      return false // exit app
-    }
   }
 
   beepAndVibrate() {
@@ -61,6 +52,11 @@ class Routine extends Component {
       exerciseList: routine.exercises,
       currentExercise: routine.exercises[0],
       currentExerciseNumber: 0
+    });
+
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      this.props.navigator.push({ name: "Home" });
+      return true;
     });
   }
 

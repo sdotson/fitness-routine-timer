@@ -6,7 +6,8 @@ import {
   Picker,
   Switch,
   Modal,
-  Alert
+  Alert,
+  BackAndroid
 } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -42,6 +43,12 @@ class CreateRoutine extends Component {
         const template = this.props.routines.filter(routine => routine.name === this.props.routineTemplateName)[0];
         this.props.useRoutineAsTemplate(template.exercises);
     }
+
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+      this.props.hideAllModals();
+      this.props.navigator.push({ name: "Home" });
+      return true;
+    });
   }
 
   onRoutineNameChange(event) {

@@ -9,7 +9,8 @@ import {
   UPDATE_EXERCISE,
   START_UPDATE_EXERCISE,
   TOGGLE_ADD_EXERCISE_MODAL,
-  TOGGLE_ADD_NEW_EXERCISE_MODAL
+  TOGGLE_ADD_NEW_EXERCISE_MODAL,
+  HIDE_ALL_MODALS
 } from './types';
 
 export function addExerciseToRoutine(exercise) {
@@ -87,5 +88,12 @@ export function toggleAddNewExerciseModal() {
   console.log('toggleAddNewExerciseModal() triggered');
   return {
     type: TOGGLE_ADD_NEW_EXERCISE_MODAL
+  }
+}
+
+export function hideAllModals() {
+  console.log('hideALlModals() triggered');
+  return {
+    type: HIDE_ALL_MODALS
   }
 }
