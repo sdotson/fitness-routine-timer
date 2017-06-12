@@ -163,6 +163,11 @@ const styles = {
   },
   buttonWrapper: {
     marginBottom: 15
+  },
+  picker: {
+    backgroundColor: '#ccc',
+    marginTop: 30,
+    marginBottom: 15
   }
 }
 

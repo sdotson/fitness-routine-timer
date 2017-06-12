@@ -148,15 +148,16 @@ const styles = {
   selectRoutine: {
     paddingLeft: 15,
     paddingRight: 15,
-    marginBottom: 30
+    marginTop: 30,
+    marginBottom: 15
   },
   picker: {
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    backgroundColor: '#ccc'
   },
   createRoutine: {
     paddingLeft: 15,
     paddingRight: 15,
-    marginTop: 30,
     marginBottom: 30
   },
   centeredText: {
@@ -164,7 +165,8 @@ const styles = {
   },
   buttonContainer: {
     flexDirection: "row",
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 15
   }
 }
 

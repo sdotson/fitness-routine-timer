@@ -145,6 +145,10 @@ const styles = {
   buttonWrapper: {
     marginBottom: 15,
     marginTop: 15
+  },
+  picker: {
+    backgroundColor: '#ccc',
+    marginBottom: 15
   }
 }
 

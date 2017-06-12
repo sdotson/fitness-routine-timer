@@ -66,7 +66,7 @@ const styles = {
     paddingBottom: 20
   },
   routineItem: {
-    backgroundColor: '#eee',
+    backgroundColor: '#ccc',
     marginBottom: 10,
     padding: 5,
     position: 'relative'
