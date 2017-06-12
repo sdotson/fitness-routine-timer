@@ -51,6 +51,10 @@ class CreateRoutine extends Component {
     });
   }
 
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress');
+  }
+
   onRoutineNameChange(event) {
     this.setState({
       routineName: event

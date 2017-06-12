@@ -60,6 +60,10 @@ class Routine extends Component {
     });
   }
 
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress');
+  }
+
   startExercise(index) {
     this.beepAndVibrate();
     this.setState((prevState, props) => {

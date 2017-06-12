@@ -172,7 +172,6 @@ const styles = {
 }
 
 function mapStateToProps(state) {
-  console.log('AddExercise mapState', state);
   return {
     exercises: state.exercises,
     settings: state.settings,

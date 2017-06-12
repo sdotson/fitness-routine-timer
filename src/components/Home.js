@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Picker,
   View,
-  Text
+  Text,
+  Alert
 } from 'react-native';
 import {
   Button,
@@ -40,9 +41,21 @@ class Home extends Component {
     })
   }
 
-  deleteRoutine() {
+  deleteRoutineForever() {
     this.props.deleteRoutine(this.state.routine);
     this.setState({ routine: "" });
+  }
+
+  deleteRoutine() {
+    Alert.alert(
+      'Confirm',
+      `Are you sure you want to delete the routine "${this.state.routine}"?`,
+      [
+        {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+        {text: 'Yes', onPress: () => this.deleteRoutineForever() }
+      ],
+      { cancelable: false }
+    );
   }
 
   editRoutine() {
