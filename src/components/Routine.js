@@ -88,6 +88,7 @@ class Routine extends Component {
             }
           } else {
             clearInterval(this.interval);
+            Vibration.vibrate();
             this.setState({ routineFinished: true });
             resolve();
           }
