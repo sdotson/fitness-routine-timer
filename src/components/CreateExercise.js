@@ -96,7 +96,7 @@ class CreateExercise extends Component {
       <Modal
         animationType={"slide"}
         transparent={false}
-        visible={this.props.addNewExerciseModal || false}
+        visible={this.props && this.props.addNewExerciseModal}
         style={styles.modal}
         onRequestClose={()=>{}}
       >
