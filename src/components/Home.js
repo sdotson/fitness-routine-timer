@@ -12,6 +12,12 @@ import {
 } from 'react-native-elements';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded
+} from 'react-native-admob';
 import * as actions from '../actions';
 import { Header } from './common';
 
@@ -26,6 +32,7 @@ class Home extends Component {
     this.editRoutine = this.editRoutine.bind(this);
     this.deleteRoutine = this.deleteRoutine.bind(this);
     this.createRoutine = this.createRoutine.bind(this);
+    this.bannerError = this.bannerError.bind(this);
   }
 
   componentDidMount() {
@@ -129,6 +136,10 @@ class Home extends Component {
     }
   }
 
+  bannerError() {
+    console.log('uh oh');
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -145,6 +156,12 @@ class Home extends Component {
             onPress={this.createRoutine}
           />
         </View>
+        <AdMobBanner
+          style={styles.adBanner}
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-9882203470440565/8017430337"
+          testDeviceID="EMULATOR"
+          didFailToReceiveAdWithError={this.bannerError} />
       </View>
     );
   }
@@ -180,6 +197,10 @@ const styles = {
     flexDirection: "row",
     justifyContent: 'center',
     marginBottom: 15
+  },
+  adBanner: {
+    position: 'absolute',
+    bottom: 0
   }
 }
 
