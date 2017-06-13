@@ -146,6 +146,9 @@ class addExerciseToRoutine extends Component {
 }
 
 const styles = {
+  modal: {
+    backgroundColor: '#eee'
+  },
   content: {
     paddingLeft: 15,
     paddingRight: 15
@@ -159,7 +162,8 @@ const styles = {
   modalContent: {
     paddingLeft: 15,
     paddingRight: 15,
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
+    flex: 1
   },
   buttonWrapper: {
     marginBottom: 15
