@@ -107,9 +107,13 @@ class CreateRoutine extends Component {
   }
 
   addRoutine() {
+    const totalTime = this.props.newRoutine.reduce((acc, task) => {
+      return acc + task.duration;
+    }, 0);
     this.props.addRoutine({
       name: this.state.routineName,
       default: false,
+      totalTime,
       exercises: this.props.newRoutine
     });
     this.props.navigator.push({ name: 'Home' });

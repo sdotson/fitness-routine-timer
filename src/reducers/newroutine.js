@@ -14,9 +14,7 @@ export default function(state = [], action) {
     case DELETE_EXERCISE_FROM_ROUTINE:
       return state.filter((exercise, index) => index != action.payload);
     case USE_ROUTINE_AS_TEMPLATE:
-      console.log('useRoutineAsTemplate', action.payload);
       return [...action.payload];
-
   }
 
   return state;

@@ -5,7 +5,7 @@ const defaultValues = {
     taskDefault: 45
   },
   routines: [{
-    name: "Ab Blaster",
+    name: "Ab blaster",
     default: true,
     exercises: [
         {
@@ -166,6 +166,18 @@ const defaultValues = {
           duration: 10
         },
         {
+          name: "Downward dog",
+          isOneSided: false,
+          duration: 45,
+          type: 'stretch'
+        },
+        {
+          name: "Rest",
+          isOneSided: false,
+          type: 'rest',
+          duration: 10
+        },
+        {
           name: "Lunge Quad",
           isOneSided: true,
           default: true,
@@ -205,6 +217,36 @@ const defaultValues = {
           type: 'stretch'
         },
         {
+          name: "Rest",
+          isOneSided: false,
+          type: 'rest',
+          duration: 10
+        },
+        {
+          name: "Wrist Extension",
+          isOneSided: true,
+          duration: 45,
+          type: 'stretch'
+        },
+        {
+          name: "Rest",
+          isOneSided: false,
+          type: 'rest',
+          duration: 10
+        },
+        {
+          name: "Wrist Flexion",
+          isOneSided: true,
+          duration: 45,
+          type: 'stretch'
+        },
+        {
+          name: "Rest",
+          isOneSided: false,
+          type: 'rest',
+          duration: 10
+        },
+        {
           name: "Meditate",
           isOneSided: false,
           type: 'rest',
@@ -226,13 +268,19 @@ const defaultValues = {
         type: 'rest'
       },
       {
-        name: "Cobra Abdominal stretch",
+        name: "Cobra abdominal stretch",
         isOneSided: false,
         default: true,
         type: 'stretch'
       },
       {
         name: "Child's pose",
+        isOneSided: false,
+        default: true,
+        type: 'stretch'
+      },
+      {
+        name: "Downward dog",
         isOneSided: false,
         default: true,
         type: 'stretch'
@@ -359,6 +407,12 @@ const defaultValues = {
       },
       {
         name: "Jump rope",
+        isOneSided: false,
+        default: true,
+        type: 'exercise'
+      },
+      {
+        name: "Burpees",
         isOneSided: false,
         default: true,
         type: 'exercise'
