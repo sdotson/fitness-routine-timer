@@ -3,7 +3,8 @@ import {
   Picker,
   View,
   Text,
-  Alert
+  Alert,
+  BackAndroid
 } from 'react-native';
 import {
   Button,
@@ -37,6 +38,19 @@ class Home extends Component {
 
   componentDidMount() {
       SplashScreen.hide();
+      const currentRoute = this.props.navigator.getCurrentRoutes().pop();
+      BackAndroid.addEventListener('hardwareBackPress', () => {
+        if (currentRoute.name === 'Home') {
+          return false;
+        } else {
+          this.props.navigator.push({ name: "Home" });
+          return true;
+        }
+      });
+  }
+
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress');
   }
 
   startRoutine() {

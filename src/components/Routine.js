@@ -55,8 +55,13 @@ class Routine extends Component {
     });
 
     BackAndroid.addEventListener('hardwareBackPress', () => {
-      this.props.navigator.push({ name: "Home" });
-      return true;
+      const currentRoute = this.props.navigator.getCurrentRoutes().pop();
+      if (currentRoute.name === 'Home') {
+        return false;
+      } else {
+        this.props.navigator.push({ name: "Home" });
+        return true;
+      }
     });
   }
 

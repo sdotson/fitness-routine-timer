@@ -82,16 +82,24 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+
+ext.versionMajor = 1
+ext.versionMinor = 0
+ext.versionPatch = 1
+ext.versionClassifier = ""
+ext.minimumSdkVersion = 16
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.fitnessroutinetimer"
-        minSdkVersion 16
+        minSdkVersion project.ext.minimumSdkVersion
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode generateVersionCode()
+    		versionName generateVersionName()
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -153,4 +161,16 @@ dependencies {
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
+}
+
+private Integer generateVersionCode() {
+	return ext.minimumSdkVersion * 10000000 + ext.versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+private String generateVersionName() {
+	String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+	if (ext.versionClassifier != null && !ext.versionClassifier.isEmpty()) {
+		versionName = versionName + "-" + ext.versionClassifier
+	}
+	return versionName;
 }
