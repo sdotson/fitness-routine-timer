@@ -364,6 +364,30 @@ const defaultValues = {
         type: 'stretch'
       },
       {
+        name: "IT band",
+        isOneSided: true,
+        default: true,
+        type: 'stretch'
+      },
+      {
+        name: "IT band crossover",
+        isOneSided: true,
+        default: true,
+        type: 'stretch'
+      },
+      {
+        name: "IT band spread",
+        isOneSided: true,
+        default: true,
+        type: 'stretch'
+      },
+      {
+        name: "Thumb",
+        isOneSided: true,
+        default: true,
+        type: 'stretch'
+      },
+      {
         name: "Pushups",
         isOneSided: false,
         default: true,
