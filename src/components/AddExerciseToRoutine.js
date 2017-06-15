@@ -9,7 +9,7 @@ import {
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { Header, Subheader, Input } from './common';
+import { Header, Subheader } from './common';
 import RoutineList from './RoutineList';
 import CreateExercise from './CreateExercise';
 
