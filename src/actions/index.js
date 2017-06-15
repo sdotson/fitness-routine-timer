@@ -63,7 +63,6 @@ export function updateExercise(exercise) {
 }
 
 export function startUpdateExercise(exercise) {
-  console.log('startUpdateExercise', exercise);
   return {
     type: START_UPDATE_EXERCISE,
     payload: exercise
@@ -78,21 +77,18 @@ export function updateSettings(settings) {
 }
 
 export function toggleAddExerciseModal() {
-  console.log('toggleAddExerciseModal() triggered');
   return {
     type: TOGGLE_ADD_EXERCISE_MODAL
   }
 }
 
 export function toggleAddNewExerciseModal() {
-  console.log('toggleAddNewExerciseModal() triggered');
   return {
     type: TOGGLE_ADD_NEW_EXERCISE_MODAL
   }
 }
 
 export function hideAllModals() {
-  console.log('hideALlModals() triggered');
   return {
     type: HIDE_ALL_MODALS
   }

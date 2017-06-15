@@ -151,7 +151,7 @@ class Home extends Component {
   }
 
   bannerError() {
-    console.log('uh oh');
+    // banner error handling
   }
 
   render() {
