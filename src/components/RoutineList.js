@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import formatSeconds from '../utils/formatSeconds';
+import { formatSeconds } from '../utils/formatSeconds';
 
 class RoutineList extends Component {
   constructor(props) {
