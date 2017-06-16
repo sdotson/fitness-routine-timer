@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -41,16 +42,17 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7D8A57C9CAC34083BB6A9308 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8EB6A038B4401AAEF702B6 /* libSplashScreen.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		B208C8C6A0C9CDB7E5D18F77 /* libPods-fitnessroutinetimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 720157C5373179EE1D3EA0B3 /* libPods-fitnessroutinetimer.a */; };
 		C6F5608ADC4F4C7593CDEF9B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 816A44956C1D45C6B09144D0 /* EvilIcons.ttf */; };
+		DD333B8704AD425FBBFDD567 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1258D8B24B41418DAE76FB /* libRNSound.a */; };
 		E2F4B3481CE149B29DA7CBA2 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02753A578E2749A6A39B28EC /* libRNVectorIcons.a */; };
 		E34567C9070B48A196DEABBF /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4915E0859FE84D16BAA87CBE /* libKCKeepAwake.a */; };
 		E483C28B9A01435C8219D5C5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFB97D763E0F4489A495127F /* MaterialCommunityIcons.ttf */; };
+		E8EC87302379463EB2A41C84 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C784B6BBEA406CA45063A3 /* libRNAdMobManager.a */; };
 		F65B32D4B7E947C08A183ED8 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 882A3E2ACBDE4F289ABF3AD5 /* FontAwesome.ttf */; };
 		F6A4B6C6E0AE4C60878EE826 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D00CAFB454244DD28DAEA2FD /* Octicons.ttf */; };
 		F7BAE9EF51D74BA5B7CD793B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB73711E0ECF4A1499AC6887 /* Foundation.ttf */; };
 		FCA20E3F139C4CEA826539FC /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF548B3BE7C41E4B4EEE131 /* MaterialIcons.ttf */; };
-		DD333B8704AD425FBBFDD567 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1258D8B24B41418DAE76FB /* libRNSound.a */; };
-		E8EC87302379463EB2A41C84 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C784B6BBEA406CA45063A3 /* libRNAdMobManager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,31 +297,34 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = fitnessroutinetimer/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = fitnessroutinetimer/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2675337031CB4C0EA5453468 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* fitnessroutinetimer-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fitnessroutinetimer-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* fitnessroutinetimer-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fitnessroutinetimer-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF548B3BE7C41E4B4EEE131 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		3990E095FA554881AA8E5975 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		3C1258D8B24B41418DAE76FB /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = archive.ar; name = libRNSound.a; path = libRNSound.a; sourceTree = "<group>"; };
+		43AEE7B4998693AD0B8CBAF6 /* Pods-fitnessroutinetimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitnessroutinetimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-fitnessroutinetimer/Pods-fitnessroutinetimer.release.xcconfig"; sourceTree = "<group>"; };
 		4915E0859FE84D16BAA87CBE /* libKCKeepAwake.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libKCKeepAwake.a; sourceTree = "<group>"; };
 		500571A0998B4A7ABC871D15 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61086446790C44E7BE8FAF4A /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		720157C5373179EE1D3EA0B3 /* libPods-fitnessroutinetimer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fitnessroutinetimer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		732B75B360164EC0AA9082F0 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		816A44956C1D45C6B09144D0 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		882A3E2ACBDE4F289ABF3AD5 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		9291AEEDDE722F8CC486ADA9 /* Pods-fitnessroutinetimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fitnessroutinetimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fitnessroutinetimer/Pods-fitnessroutinetimer.debug.xcconfig"; sourceTree = "<group>"; };
 		B100FDF2519149579758F1DC /* KCKeepAwake.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = KCKeepAwake.xcodeproj; path = "../node_modules/react-native-keep-awake/ios/KCKeepAwake.xcodeproj"; sourceTree = "<group>"; };
 		BFB97D763E0F4489A495127F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		C3C784B6BBEA406CA45063A3 /* libRNAdMobManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = archive.ar; name = libRNAdMobManager.a; path = libRNAdMobManager.a; sourceTree = "<group>"; };
 		CB73711E0ECF4A1499AC6887 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		CDB4E6B96836472C881293E8 /* libKeepScreenOn.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libKeepScreenOn.a; sourceTree = "<group>"; };
 		D00CAFB454244DD28DAEA2FD /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		D6556335A23B48698893FED3 /* KeepScreenOn.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = KeepScreenOn.xcodeproj; path = "../node_modules/react-native-keep-screen-on/ios/KeepScreenOn.xcodeproj"; sourceTree = "<group>"; };
 		DF8EB6A038B4401AAEF702B6 /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		ED236706AF124339BE29472E /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
-		2675337031CB4C0EA5453468 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		3C1258D8B24B41418DAE76FB /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		FA49D69CF86E44DD85D42F2F /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; name = "RNAdMobManager.xcodeproj"; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C3C784B6BBEA406CA45063A3 /* libRNAdMobManager.a */ = {isa = PBXFileReference; name = "libRNAdMobManager.a"; path = "libRNAdMobManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		FA49D69CF86E44DD85D42F2F /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAdMobManager.xcodeproj; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +357,7 @@
 				7D8A57C9CAC34083BB6A9308 /* libSplashScreen.a in Frameworks */,
 				DD333B8704AD425FBBFDD567 /* libRNSound.a in Frameworks */,
 				E8EC87302379463EB2A41C84 /* libRNAdMobManager.a in Frameworks */,
+				B208C8C6A0C9CDB7E5D18F77 /* libPods-fitnessroutinetimer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +542,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7D8688B7349EE9E5374C30FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9291AEEDDE722F8CC486ADA9 /* Pods-fitnessroutinetimer.debug.xcconfig */,
+				43AEE7B4998693AD0B8CBAF6 /* Pods-fitnessroutinetimer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +592,8 @@
 				00E356EF1AD99517003FC87E /* fitnessroutinetimerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				F99C58C49CB542329B54F7A8 /* Resources */,
+				7D8688B7349EE9E5374C30FA /* Pods */,
+				ADD8CF65D95EB1FE90ED23AD /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -591,6 +608,14 @@
 				2D02E4901E0B4A5D006451C7 /* fitnessroutinetimer-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ADD8CF65D95EB1FE90ED23AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				720157C5373179EE1D3EA0B3 /* libPods-fitnessroutinetimer.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F99C58C49CB542329B54F7A8 /* Resources */ = {
@@ -635,10 +660,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "fitnessroutinetimer" */;
 			buildPhases = (
+				9329DBF2C6429C1C885D8B6D /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				70EB1FD639283118EE2C04CC /* [CP] Embed Pods Frameworks */,
+				6990C12A0A1A94FC372E0EEA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1071,6 +1099,51 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
+		6990C12A0A1A94FC372E0EEA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fitnessroutinetimer/Pods-fitnessroutinetimer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70EB1FD639283118EE2C04CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fitnessroutinetimer/Pods-fitnessroutinetimer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9329DBF2C6429C1C885D8B6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1209,6 +1282,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9291AEEDDE722F8CC486ADA9 /* Pods-fitnessroutinetimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1237,6 +1311,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43AEE7B4998693AD0B8CBAF6 /* Pods-fitnessroutinetimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
