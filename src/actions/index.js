@@ -1,6 +1,7 @@
 import {
   ADD_EXERCISE_TO_ROUTINE,
   DELETE_EXERCISE_FROM_ROUTINE,
+  CLEAR_NEW_ROUTINE,
   USE_ROUTINE_AS_TEMPLATE,
   ADD_ROUTINE,
   DELETE_ROUTINE,
@@ -32,6 +33,12 @@ export function useRoutineAsTemplate(routine) {
     type: USE_ROUTINE_AS_TEMPLATE,
     payload: routine
   };
+}
+
+export function clearNewRoutine() {
+  return {
+    type: CLEAR_NEW_ROUTINE
+  }
 }
 
 export function addRoutine(routine) {

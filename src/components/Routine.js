@@ -38,6 +38,7 @@ class Routine extends Component {
     });
 
     this.startRoutine = this.startRoutine.bind(this);
+    this.onBackButtonPress = this.onBackButtonPress.bind(this);
   }
 
   beepAndVibrate() {
@@ -54,19 +55,22 @@ class Routine extends Component {
       currentExerciseNumber: 0
     });
 
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-      const currentRoute = this.props.navigator.getCurrentRoutes().pop();
-      if (currentRoute.name === 'Home') {
-        return false;
-      } else {
-        this.props.navigator.push({ name: "Home" });
-        return true;
-      }
-    });
+    BackAndroid.addEventListener('hardwareBackPress', this.onBackButtonPress);
+  }
+
+  onBackButtonPress() {
+    const currentRoute = this.props.navigator.getCurrentRoutes().pop();
+    if (currentRoute.name === 'Home') {
+      return false;
+    } else {
+      this.props.navigator.push({ name: "Home" });
+      return true;
+    }
+    return true;
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('hardwareBackPress');
+    BackAndroid.removeEventListener('hardwareBackPress', this.onBackButtonPress);
   }
 
   startExercise(index) {

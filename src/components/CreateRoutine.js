@@ -36,6 +36,8 @@ class CreateRoutine extends Component {
     this.onRoutineNameChange = this.onRoutineNameChange.bind(this);
     this.props.toggleAddExerciseModal = this.props.toggleAddExerciseModal.bind(this);
     this.onSaveRoutine = this.onSaveRoutine.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+    this.onBackButtonPress = this.onBackButtonPress.bind(this);
   }
 
   componentDidMount() {
@@ -44,20 +46,22 @@ class CreateRoutine extends Component {
         this.props.useRoutineAsTemplate(template.exercises);
     }
 
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-      const currentRoute = this.props.navigator.getCurrentRoutes().pop();
-      if (currentRoute.name === 'Home') {
-        return false;
-      } else {
-        this.props.hideAllModals();
-        this.props.navigator.push({ name: "Home" });
-        return true;
-      }
-    });
+    BackAndroid.addEventListener('hardwareBackPress', this.onBackButtonPress);
+  }
+
+  onBackButtonPress() {
+    const currentRoute = this.props.navigator.getCurrentRoutes().pop();
+    if (currentRoute.name === 'Home') {
+      return false;
+    } else {
+      this.props.hideAllModals();
+      this.onCancel();
+      return true;
+    }
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('hardwareBackPress');
+    BackAndroid.removeEventListener('hardwareBackPress', this.onBackButtonPress);
   }
 
   onRoutineNameChange(event) {
@@ -111,6 +115,11 @@ class CreateRoutine extends Component {
     }
   }
 
+  onCancel() {
+    this.props.clearNewRoutine();
+    this.props.navigator.push({ name: 'Home' });
+  }
+
   addRoutine() {
     const totalTime = this.props.newRoutine.reduce((acc, task) => {
       return acc + task.duration;
@@ -159,7 +168,7 @@ class CreateRoutine extends Component {
             icon={{ name: 'cancel' }}
             title='Cancel'
             backgroundColor="#888"
-            onPress={() => this.props.navigator.push({ name: 'Home' })}
+            onPress={this.onCancel}
           />
         </ScrollView>
       </View>

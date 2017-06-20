@@ -34,23 +34,21 @@ class Home extends Component {
     this.deleteRoutine = this.deleteRoutine.bind(this);
     this.createRoutine = this.createRoutine.bind(this);
     this.bannerError = this.bannerError.bind(this);
+    this.onBackButtonPress = this.onBackButtonPress.bind(this);
   }
 
   componentDidMount() {
       SplashScreen.hide();
       const currentRoute = this.props.navigator.getCurrentRoutes().pop();
-      BackAndroid.addEventListener('hardwareBackPress', () => {
-        if (currentRoute.name === 'Home') {
-          return false;
-        } else {
-          this.props.navigator.push({ name: "Home" });
-          return true;
-        }
-      });
+      BackAndroid.addEventListener('hardwareBackPress', this.onBackButtonPress);
+  }
+
+  onBackButtonPress() {
+      return false;
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('hardwareBackPress');
+    BackAndroid.removeEventListener('hardwareBackPress', this.onBackButtonPress);
   }
 
   startRoutine() {
