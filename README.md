@@ -7,3 +7,4 @@ React Native App that provides a timer for your exercise routine. Now fully func
 - Add ability to edit specific exercises within a routine
 - Clean up code
 - Decrease anxiety and add tests!
+- Take a look into https://github.com/deanmcpherson/react-native-sortable-listview for possibly making the new routine form more user friendly.
